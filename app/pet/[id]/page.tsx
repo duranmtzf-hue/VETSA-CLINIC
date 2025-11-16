@@ -1,5 +1,8 @@
 "use client";
 
+// Forzar renderizado dinámico para evitar prerender
+export const dynamic = 'force-dynamic';
+
 import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 import { doc, getDoc, updateDoc, collection, addDoc } from "firebase/firestore";

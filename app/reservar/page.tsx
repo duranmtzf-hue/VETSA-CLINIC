@@ -1,5 +1,8 @@
 "use client";
 
+// Forzar renderizado dinámico para evitar prerender
+export const dynamic = 'force-dynamic';
+
 import { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useForm } from "react-hook-form";

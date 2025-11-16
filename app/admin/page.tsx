@@ -1,5 +1,8 @@
 "use client";
 
+// Forzar renderizado dinámico para evitar prerender
+export const dynamic = 'force-dynamic';
+
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { signInWithEmailAndPassword, signOut, onAuthStateChanged, User } from "firebase/auth";
