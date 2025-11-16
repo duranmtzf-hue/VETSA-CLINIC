@@ -3,7 +3,7 @@
 // Forzar renderizado dinámico para evitar prerender
 export const dynamic = 'force-dynamic';
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { motion } from "framer-motion";
@@ -58,7 +58,8 @@ const services = [
   { id: "24", name: "Desparasitante", price: 180, category: "Vacunas" },
 ];
 
-export default function ReservarPage() {
+// Componente interno que usa useSearchParams - debe estar en Suspense
+function ReservarForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [isSubmitting, setIsSubmitting] = useState(false);
