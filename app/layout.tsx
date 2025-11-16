@@ -21,12 +21,13 @@ export const metadata: Metadata = {
   title: "VETSA Clinic – Cuidado veterinario profesional",
   description: "Clínica veterinaria profesional con servicios de alta calidad para tus mascotas",
   manifest: "/manifest.json",
+};
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
   themeColor: "#0F172A",
-  viewport: {
-    width: "device-width",
-    initialScale: 1,
-    maximumScale: 5,
-  },
 };
 
 export default function RootLayout({
