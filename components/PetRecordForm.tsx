@@ -4,8 +4,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-// @ts-ignore - date-fns locale import
-import es from "date-fns/locale/es/index.js";
+import { es } from "date-fns/locale";
 
 interface PetRecordFormData {
   notes: string;

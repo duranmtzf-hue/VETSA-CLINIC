@@ -10,8 +10,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PetRecordForm from "@/components/PetRecordForm";
 import { format } from "date-fns";
-// @ts-ignore - date-fns locale import
-import es from "date-fns/locale/es/index.js";
+import { es } from "date-fns/locale";
 import { Plus, Image as ImageIcon, Calendar, FileText } from "lucide-react";
 import Image from "next/image";
 

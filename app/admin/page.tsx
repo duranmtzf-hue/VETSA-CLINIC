@@ -6,8 +6,7 @@ import { signInWithEmailAndPassword, signOut, onAuthStateChanged, User } from "f
 import { collection, query, orderBy, getDocs, updateDoc, doc } from "firebase/firestore";
 import { auth, db } from "@/lib/firebase";
 import { format } from "date-fns";
-// @ts-ignore - date-fns locale import
-import es from "date-fns/locale/es/index.js";
+import { es } from "date-fns/locale";
 import { motion } from "framer-motion";
 import Header from "@/components/Header";
 import AdminAppointmentList from "@/components/AdminAppointmentList";

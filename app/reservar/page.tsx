@@ -9,8 +9,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import { format } from "date-fns";
-// @ts-ignore - date-fns locale import
-import es from "date-fns/locale/es/index.js";
+import { es } from "date-fns/locale";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Calendar, CheckCircle2 } from "lucide-react";
