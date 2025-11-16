@@ -307,3 +307,25 @@ function ReservarForm() {
   );
 }
 
+// Componente principal que envuelve en Suspense
+export default function ReservarPage() {
+  return (
+    <Suspense fallback={
+      <main className="min-h-screen bg-gray-50 pt-20">
+        <Header />
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <div className="max-w-2xl mx-auto bg-white rounded-2xl shadow-xl p-8">
+            <div className="text-center">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-accent mx-auto mb-4"></div>
+              <p className="text-gray-600">Cargando formulario...</p>
+            </div>
+          </div>
+        </div>
+        <Footer />
+      </main>
+    }>
+      <ReservarForm />
+    </Suspense>
+  );
+}
+
