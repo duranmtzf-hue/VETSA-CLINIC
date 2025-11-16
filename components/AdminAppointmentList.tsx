@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { format } from "date-fns";
-import es from "date-fns/locale/es";
+import * as es from "date-fns/locale/es";
 import { CheckCircle2, XCircle, Clock, Calendar } from "lucide-react";
 
 interface Appointment {
