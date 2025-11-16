@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Generador de Iconos VETSA</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    canvas {
+      border: 1px solid #ddd;
+      margin: 20px 0;
+      display: block;
+    }
+    button {
+      background: #FF7A59;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin: 5px;
+    }
+    button:hover {
+      background: #FF7A59cc;
+    }
+    .instructions {
+      background: #f0f0f0;
+      padding: 15px;
+      border-radius: 5px;
+      margin: 20px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Generador de Iconos PWA - VETSA Clinic</h1>
+    <div class="instructions">
+      <p><strong>Instrucciones:</strong></p>
+      <ol>
+        <li>Haz clic en "Generar Icono" para crear un icono SVG</li>
+        <li>Haz clic derecho en cada tamaño y "Guardar imagen como..."</li>
+        <li>Guarda los archivos PNG en la carpeta <code>public/icons/</code> con los nombres: icon-72x72.png, icon-96x96.png, etc.</li>
+        <li>O usa una herramienta online como <a href="https://realfavicongenerator.net/" target="_blank">RealFaviconGenerator</a> para generar todos los tamaños automáticamente</li>
+      </ol>
+    </div>
+
+    <canvas id="iconCanvas" width="512" height="512"></canvas>
+    
+    <div>
+      <button onclick="generateIcon(72)">Generar 72x72</button>
+      <button onclick="generateIcon(96)">Generar 96x96</button>
+      <button onclick="generateIcon(128)">Generar 128x128</button>
+      <button onclick="generateIcon(144)">Generar 144x144</button>
+      <button onclick="generateIcon(152)">Generar 152x152</button>
+      <button onclick="generateIcon(192)">Generar 192x192</button>
+      <button onclick="generateIcon(384)">Generar 384x384</button>
+      <button onclick="generateIcon(512)">Generar 512x512</button>
+    </div>
+
+    <div id="downloadLinks"></div>
+  </div>
+
+  <script>
+    const canvas = document.getElementById('iconCanvas');
+    const ctx = canvas.getContext('2d');
+
+    function drawIcon(size) {
+      canvas.width = size;
+      canvas.height = size;
+      
+      // Fondo azul oscuro con bordes redondeados
+      const radius = size * 0.2;
+      ctx.fillStyle = '#0F172A';
+      ctx.beginPath();
+      ctx.roundRect(0, 0, size, size, radius);
+      ctx.fill();
+
+      // Letra V en coral
+      ctx.fillStyle = '#FF7A59';
+      ctx.font = `bold ${size * 0.55}px Arial`;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText('V', size / 2, size / 2);
+    }
+
+    // Polyfill para roundRect si no está disponible
+    if (!CanvasRenderingContext2D.prototype.roundRect) {
+      CanvasRenderingContext2D.prototype.roundRect = function(x, y, width, height, radius) {
+        this.beginPath();
+        this.moveTo(x + radius, y);
+        this.lineTo(x + width - radius, y);
+        this.quadraticCurveTo(x + width, y, x + width, y + radius);
+        this.lineTo(x + width, y + height - radius);
+        this.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+        this.lineTo(x + radius, y + height);
+        this.quadraticCurveTo(x, y + height, x, y + height - radius);
+        this.lineTo(x, y + radius);
+        this.quadraticCurveTo(x, y, x + radius, y);
+        this.closePath();
+      };
+    }
+
+    function generateIcon(size) {
+      drawIcon(size);
+      
+      const downloadLink = document.createElement('a');
+      downloadLink.download = `icon-${size}x${size}.png`;
+      downloadLink.href = canvas.toDataURL('image/png');
+      
+      const button = document.createElement('button');
+      button.textContent = `Descargar icon-${size}x${size}.png`;
+      button.onclick = () => downloadLink.click();
+      
+      const container = document.getElementById('downloadLinks');
+      const existing = document.getElementById(`link-${size}`);
+      if (existing) existing.remove();
+      
+      button.id = `link-${size}`;
+      container.appendChild(button);
+      container.appendChild(document.createElement('br'));
+    }
+
+    // Dibujar icono inicial
+    drawIcon(512);
+  </script>
+</body>
+</html>
+
