@@ -10,8 +10,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PetRecordForm from "@/components/PetRecordForm";
 import { format } from "date-fns";
-// Import fix: date-fns locales must be imported as default, not named export
-import * as es from "date-fns/locale/es";
+import { es } from "date-fns/locale";
 import { Plus, Image as ImageIcon, Calendar, FileText } from "lucide-react";
 import Image from "next/image";
 
