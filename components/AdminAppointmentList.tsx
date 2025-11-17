@@ -1,9 +1,10 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
-import { CheckCircle2, XCircle, Clock, Calendar } from "lucide-react";
+import { CheckCircle2, XCircle, Clock, Calendar, Loader2 } from "lucide-react";
 
 interface Appointment {
   id: string;
@@ -48,12 +49,35 @@ export default function AdminAppointmentList({
   appointments,
   onUpdateStatus,
 }: AdminAppointmentListProps) {
+  const [loadingStates, setLoadingStates] = useState<Map<string, string>>(new Map());
+
   const getStatusColor = (status: string) => {
     return statusColors[status] || statusColors.pending;
   };
 
   const getStatusLabel = (status: string) => {
     return statusLabels[status] || status;
+  };
+
+  const handleStatusUpdate = async (id: string, status: string) => {
+    const loadingKey = `${id}-${status}`;
+    // Agregar el estado de carga
+    setLoadingStates(prev => new Map(prev).set(loadingKey, status));
+    
+    try {
+      await onUpdateStatus(id, status);
+    } finally {
+      // Remover el estado de carga
+      setLoadingStates(prev => {
+        const newMap = new Map(prev);
+        newMap.delete(loadingKey);
+        return newMap;
+      });
+    }
+  };
+
+  const isLoading = (id: string, status: string) => {
+    return loadingStates.has(`${id}-${status}`);
   };
 
   if (appointments.length === 0) {
@@ -138,35 +162,50 @@ export default function AdminAppointmentList({
                     <div className="flex items-center gap-2">
                       {appointment.status === "pending" && (
                         <motion.button
-                          onClick={() => onUpdateStatus(appointment.id, "confirmed")}
-                          whileHover={{ scale: 1.1 }}
-                          whileTap={{ scale: 0.9 }}
-                          className="p-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition-colors"
+                          onClick={() => handleStatusUpdate(appointment.id, "confirmed")}
+                          disabled={isLoading(appointment.id, "confirmed")}
+                          whileHover={!isLoading(appointment.id, "confirmed") ? { scale: 1.1 } : {}}
+                          whileTap={!isLoading(appointment.id, "confirmed") ? { scale: 0.9 } : {}}
+                          className="p-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                           title="Confirmar"
                         >
-                          <CheckCircle2 className="w-4 h-4" />
+                          {isLoading(appointment.id, "confirmed") ? (
+                            <Loader2 className="w-4 h-4 animate-spin" />
+                          ) : (
+                            <CheckCircle2 className="w-4 h-4" />
+                          )}
                         </motion.button>
                       )}
                       {appointment.status !== "completed" && appointment.status !== "cancelled" && (
                         <motion.button
-                          onClick={() => onUpdateStatus(appointment.id, "completed")}
-                          whileHover={{ scale: 1.1 }}
-                          whileTap={{ scale: 0.9 }}
-                          className="p-2 bg-green-500 hover:bg-green-600 text-white rounded-lg transition-colors"
+                          onClick={() => handleStatusUpdate(appointment.id, "completed")}
+                          disabled={isLoading(appointment.id, "completed")}
+                          whileHover={!isLoading(appointment.id, "completed") ? { scale: 1.1 } : {}}
+                          whileTap={!isLoading(appointment.id, "completed") ? { scale: 0.9 } : {}}
+                          className="p-2 bg-green-500 hover:bg-green-600 text-white rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                           title="Completar"
                         >
-                          <CheckCircle2 className="w-4 h-4" />
+                          {isLoading(appointment.id, "completed") ? (
+                            <Loader2 className="w-4 h-4 animate-spin" />
+                          ) : (
+                            <CheckCircle2 className="w-4 h-4" />
+                          )}
                         </motion.button>
                       )}
                       {appointment.status !== "cancelled" && (
                         <motion.button
-                          onClick={() => onUpdateStatus(appointment.id, "cancelled")}
-                          whileHover={{ scale: 1.1 }}
-                          whileTap={{ scale: 0.9 }}
-                          className="p-2 bg-red-500 hover:bg-red-600 text-white rounded-lg transition-colors"
+                          onClick={() => handleStatusUpdate(appointment.id, "cancelled")}
+                          disabled={isLoading(appointment.id, "cancelled")}
+                          whileHover={!isLoading(appointment.id, "cancelled") ? { scale: 1.1 } : {}}
+                          whileTap={!isLoading(appointment.id, "cancelled") ? { scale: 0.9 } : {}}
+                          className="p-2 bg-red-500 hover:bg-red-600 text-white rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                           title="Cancelar"
                         >
-                          <XCircle className="w-4 h-4" />
+                          {isLoading(appointment.id, "cancelled") ? (
+                            <Loader2 className="w-4 h-4 animate-spin" />
+                          ) : (
+                            <XCircle className="w-4 h-4" />
+                          )}
                         </motion.button>
                       )}
                     </div>

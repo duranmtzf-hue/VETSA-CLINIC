@@ -239,11 +239,30 @@ export default function AdminPage() {
 
   const updateAppointmentStatus = async (appointmentId: string, status: string) => {
     try {
+      // Validar que db esté disponible
+      if (!db) {
+        alert("Firebase no está inicializado correctamente. Por favor, recarga la página.");
+        return;
+      }
+
       const appointmentRef = doc(db, "appointments", appointmentId);
-      await updateDoc(appointmentRef, { status });
-      fetchAppointments();
-    } catch (error) {
+      
+      // Agregar timeout para evitar que se quede colgado
+      const timeoutPromise = new Promise((_, reject) => {
+        setTimeout(() => reject(new Error("La operación tardó demasiado. Por favor, verifica tu conexión e intenta de nuevo.")), 10000);
+      });
+
+      await Promise.race([
+        updateDoc(appointmentRef, { status }),
+        timeoutPromise
+      ]);
+
+      // Actualizar la lista de citas
+      await fetchAppointments();
+    } catch (error: any) {
       console.error("Error al actualizar el estado:", error);
+      const errorMessage = error?.message || "Hubo un error al actualizar el estado de la cita. Por favor, intenta de nuevo.";
+      alert(errorMessage);
     }
   };
 

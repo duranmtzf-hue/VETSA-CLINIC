@@ -73,9 +73,15 @@ function ReservarForm() {
     formState: { errors },
     setValue,
     watch,
-  } = useForm<AppointmentFormData>();
+    trigger,
+  } = useForm<AppointmentFormData>({
+    defaultValues: {
+      dateTime: undefined,
+    },
+  });
 
   const selectedService = watch("service");
+  const dateTimeValue = watch("dateTime");
 
   // Pre-seleccionar servicio desde URL
   useEffect(() => {
@@ -85,11 +91,33 @@ function ReservarForm() {
     }
   }, [searchParams, setValue]);
 
+  // Registrar validación para dateTime
+  useEffect(() => {
+    register("dateTime", {
+      required: "La fecha y hora son requeridas",
+      validate: (value) => {
+        if (!value && !selectedDate) {
+          return "Debes seleccionar una fecha y hora";
+        }
+        return true;
+      },
+    });
+  }, [register, selectedDate]);
+
   const onSubmit = async (data: AppointmentFormData) => {
-    if (!selectedDate) return;
+    if (!selectedDate) {
+      alert("Por favor, selecciona una fecha y hora para la cita.");
+      return;
+    }
     
     setIsSubmitting(true);
+    
     try {
+      // Validar que db esté disponible
+      if (!db) {
+        throw new Error("Firebase no está inicializado correctamente. Por favor, recarga la página.");
+      }
+
       const appointmentData = {
         ...data,
         dateTime: selectedDate,
@@ -97,12 +125,22 @@ function ReservarForm() {
         createdAt: new Date(),
       };
 
-      const docRef = await addDoc(collection(db, "appointments"), appointmentData);
+      // Agregar timeout para evitar que se quede colgado
+      const timeoutPromise = new Promise((_, reject) => {
+        setTimeout(() => reject(new Error("La operación tardó demasiado. Por favor, verifica tu conexión e intenta de nuevo.")), 10000);
+      });
+
+      const docRef = await Promise.race([
+        addDoc(collection(db, "appointments"), appointmentData),
+        timeoutPromise
+      ]) as any;
+
       setAppointmentData(data);
       setIsConfirmed(true);
-    } catch (error) {
+    } catch (error: any) {
       console.error("Error al crear la cita:", error);
-      alert("Hubo un error al crear la cita. Por favor, intenta de nuevo.");
+      const errorMessage = error?.message || "Hubo un error al crear la cita. Por favor, intenta de nuevo.";
+      alert(errorMessage);
     } finally {
       setIsSubmitting(false);
     }
@@ -185,7 +223,15 @@ function ReservarForm() {
               Reservar Cita
             </h1>
 
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+            <form 
+              onSubmit={handleSubmit(onSubmit, (errors) => {
+                console.log("Errores de validación:", errors);
+                if (!selectedDate) {
+                  alert("Por favor, completa todos los campos requeridos, incluyendo la fecha y hora.");
+                }
+              })} 
+              className="space-y-6"
+            >
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Nombre del Cliente *
@@ -266,7 +312,10 @@ function ReservarForm() {
                   onChange={(date: Date | null) => {
                     setSelectedDate(date);
                     if (date) {
-                      setValue("dateTime", date);
+                      setValue("dateTime", date, { shouldValidate: true });
+                      trigger("dateTime");
+                    } else {
+                      setValue("dateTime", undefined as any, { shouldValidate: true });
                     }
                   }}
                   showTimeSelect
@@ -276,9 +325,12 @@ function ReservarForm() {
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent transition-all"
                   placeholderText="Selecciona fecha y hora"
                   locale={es}
+                  required
                 />
-                {!selectedDate && errors.dateTime && (
-                  <p className="text-red-500 text-sm mt-1">Selecciona una fecha y hora</p>
+                {(!selectedDate || errors.dateTime) && (
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.dateTime?.message || "Selecciona una fecha y hora"}
+                  </p>
                 )}
               </div>
 
