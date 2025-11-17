@@ -23,12 +23,36 @@ interface AdminAppointmentListProps {
 }
 
 const services: { [key: string]: string } = {
+  // CLÍNICA
   "1": "Consulta General",
-  "2": "Vacunación",
-  "3": "Cirugía",
-  "4": "Estética",
-  "5": "Rayos X",
-  "6": "Laboratorio",
+  "2": "Consulta Preventiva",
+  "3": "Profilaxis",
+  "4": "Canalizar",
+  "5": "Internamiento",
+  "6": "Muestra de Sangre",
+  "7": "Examen de Laboratorio",
+  // ESTÉTICA
+  "8": "Estética Pequeño",
+  "9": "Estética Mediano",
+  "10": "Estética Grande",
+  // ESTÉTICA PLUS+
+  "11": "Estética Plus+ Pequeño",
+  "12": "Estética Plus+ Mediano",
+  "13": "Estética Plus+ Grande",
+  // HOTEL
+  "14": "Hotel Cuarto Chico",
+  "15": "Hotel Cuarto Grande",
+  "16": "Hotel Cuarto Compartido (2)",
+  // PENSIÓN
+  "17": "Pensión Jaula Chica",
+  "18": "Pensión Jaula Grande",
+  // VACUNAS
+  "19": "Vanguard Plus 5",
+  "20": "Vanguard Plus 6",
+  "21": "Vacuna Giardia",
+  "22": "Vacuna Bordetella",
+  "23": "Vacuna Rabia",
+  "24": "Desparasitante",
 };
 
 const statusColors: { [key: string]: string } = {
