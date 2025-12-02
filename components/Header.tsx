@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { CalendarDays, Menu, X } from "lucide-react";
+import { Mail, Phone, Menu, X, Calendar } from "lucide-react";
 import Logo from "./Logo";
 
 export default function Header() {
@@ -22,51 +22,78 @@ export default function Header() {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
-      className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md shadow-md"
+      className="fixed top-0 left-0 right-0 z-50"
+      style={{
+        background: 'rgba(255, 255, 255, 0.8)',
+        backdropFilter: 'blur(20px)',
+        WebkitBackdropFilter: 'blur(20px)',
+        borderBottom: '1px solid rgba(228, 231, 239, 0.5)',
+        boxShadow: '0 4px 20px rgba(0, 0, 0, 0.05)'
+      }}
     >
-      <nav className="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
+      <nav className="container mx-auto px-6 lg:px-12 py-5">
         <div className="flex items-center justify-between">
           <Link href="/" className="group" onClick={closeMenu}>
             <Logo size="sm" showTagline={false} className="group-hover:scale-105 transition-transform duration-300" />
           </Link>
 
           {/* Menú Desktop */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-8 lg:gap-10">
             <Link
               href="/"
-              className="text-gray-700 hover:text-primary font-medium transition-colors"
+              className="text-[#1A1A1A] hover:text-[#0056FF] font-semibold text-sm lg:text-base transition-colors relative group"
+              style={{ fontFamily: 'Inter, sans-serif' }}
             >
               Inicio
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#0056FF] transition-all duration-300 group-hover:w-full"></span>
             </Link>
             <Link
-              href="/#sobre-nosotros"
-              className="text-gray-700 hover:text-primary font-medium transition-colors"
+              href="/sobre-mi"
+              className="text-[#1A1A1A] hover:text-[#0056FF] font-semibold text-sm lg:text-base transition-colors relative group"
+              style={{ fontFamily: 'Inter, sans-serif' }}
             >
-              Sobre VETSA
+              Sobre Mi
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#0056FF] transition-all duration-300 group-hover:w-full"></span>
             </Link>
             <Link
-              href="/#servicios"
-              className="text-gray-700 hover:text-primary font-medium transition-colors"
+              href="/servicios"
+              className="text-[#1A1A1A] hover:text-[#0056FF] font-semibold text-sm lg:text-base transition-colors relative group"
+              style={{ fontFamily: 'Inter, sans-serif' }}
             >
-              Servicios
+              Tratamientos
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#0056FF] transition-all duration-300 group-hover:w-full"></span>
+            </Link>
+            <Link
+              href="/preguntas-frecuentes"
+              className="text-[#1A1A1A] hover:text-[#0056FF] font-semibold text-sm lg:text-base transition-colors relative group"
+              style={{ fontFamily: 'Inter, sans-serif' }}
+            >
+              FAQ
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#0056FF] transition-all duration-300 group-hover:w-full"></span>
             </Link>
             <Link
               href="/admin"
-              className="text-gray-700 hover:text-primary font-medium transition-colors"
+              className="text-[#1A1A1A] hover:text-[#0056FF] font-semibold text-sm lg:text-base transition-colors relative group"
+              style={{ fontFamily: 'Inter, sans-serif' }}
             >
               Admin
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#0056FF] transition-all duration-300 group-hover:w-full"></span>
             </Link>
           </div>
 
-          {/* Botón Reservar Desktop */}
+          {/* Botón CONTÁCTAME Desktop */}
           <div className="hidden md:block">
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Link
                 href="/reservar"
-                className="flex items-center gap-2 bg-accent hover:bg-accent/90 text-white font-semibold px-6 py-2.5 rounded-full shadow-md transition-all duration-300"
+                className="flex items-center gap-2 bg-[#0056FF] hover:bg-[#0048E6] text-white font-bold px-7 py-3 rounded-[16px] shadow-lg hover:shadow-xl transition-all duration-300 text-sm lg:text-base relative overflow-hidden group"
+                style={{ fontFamily: 'Inter, sans-serif' }}
               >
-                <CalendarDays className="w-4 h-4" />
-                Reservar
+                <span className="relative z-10 flex items-center gap-2">
+                  <Calendar className="w-4 h-4 lg:w-5 lg:h-5" />
+                  CONSULTA YA
+                </span>
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
               </Link>
             </motion.div>
           </div>
@@ -74,7 +101,7 @@ export default function Header() {
           {/* Botón Menú Móvil */}
           <button
             onClick={toggleMenu}
-            className="md:hidden p-2 text-gray-700 hover:text-primary transition-colors"
+            className="md:hidden p-2 text-[#1A1A1A] hover:text-[#0056FF] transition-colors"
             aria-label="Abrir menú"
           >
             {isMenuOpen ? (
@@ -95,42 +122,55 @@ export default function Header() {
               transition={{ duration: 0.3 }}
               className="md:hidden overflow-hidden"
             >
-              <div className="pt-4 pb-2 space-y-2 border-t border-gray-200 mt-4">
+              <div className="pt-4 pb-2 space-y-2 border-t border-[#E4E7EF] mt-4">
                 <Link
                   href="/"
                   onClick={closeMenu}
-                  className="block px-4 py-2 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors font-medium"
+                  className="block px-4 py-2 text-[#1A1A1A] hover:text-[#0056FF] hover:bg-[#F5F7FB] rounded-lg transition-colors font-medium"
+                  style={{ fontFamily: 'Inter, sans-serif' }}
                 >
                   Inicio
                 </Link>
                 <Link
-                  href="/#sobre-nosotros"
+                  href="/sobre-mi"
                   onClick={closeMenu}
-                  className="block px-4 py-2 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors font-medium"
+                  className="block px-4 py-2 text-[#1A1A1A] hover:text-[#0056FF] hover:bg-[#F5F7FB] rounded-lg transition-colors font-medium"
+                  style={{ fontFamily: 'Inter, sans-serif' }}
                 >
-                  Sobre VETSA
+                  Sobre Mi
                 </Link>
                 <Link
-                  href="/#servicios"
+                  href="/servicios"
                   onClick={closeMenu}
-                  className="block px-4 py-2 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors font-medium"
+                  className="block px-4 py-2 text-[#1A1A1A] hover:text-[#0056FF] hover:bg-[#F5F7FB] rounded-lg transition-colors font-medium"
+                  style={{ fontFamily: 'Inter, sans-serif' }}
                 >
-                  Servicios
+                  Tratamientos
+                </Link>
+                <Link
+                  href="/preguntas-frecuentes"
+                  onClick={closeMenu}
+                  className="block px-4 py-2 text-[#1A1A1A] hover:text-[#0056FF] hover:bg-[#F5F7FB] rounded-lg transition-colors font-medium"
+                  style={{ fontFamily: 'Inter, sans-serif' }}
+                >
+                  FAQ
                 </Link>
                 <Link
                   href="/admin"
                   onClick={closeMenu}
-                  className="block px-4 py-2 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors font-medium"
+                  className="block px-4 py-2 text-[#1A1A1A] hover:text-[#0056FF] hover:bg-[#F5F7FB] rounded-lg transition-colors font-medium"
+                  style={{ fontFamily: 'Inter, sans-serif' }}
                 >
                   Admin
                 </Link>
                 <Link
                   href="/reservar"
                   onClick={closeMenu}
-                  className="block mx-4 mt-4 flex items-center justify-center gap-2 bg-accent hover:bg-accent/90 text-white font-semibold px-6 py-2.5 rounded-full shadow-md transition-all duration-300"
+                  className="block mx-4 mt-4 flex items-center justify-center gap-2 bg-[#0056FF] hover:bg-[#0048E6] text-white font-semibold px-6 py-2.5 rounded-[16px] shadow-md transition-all duration-300"
+                  style={{ fontFamily: 'Inter, sans-serif' }}
                 >
-                  <CalendarDays className="w-4 h-4" />
-                  Reservar Cita
+                  <Calendar className="w-4 h-4" />
+                  CONSULTA YA
                 </Link>
               </div>
             </motion.div>
@@ -140,4 +180,3 @@ export default function Header() {
     </motion.header>
   );
 }
-

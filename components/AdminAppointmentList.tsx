@@ -10,7 +10,7 @@ interface Appointment {
   id: string;
   clientName: string;
   clientPhone: string;
-  petName: string;
+  reason: string;
   service: string;
   dateTime: any;
   status: "pending" | "confirmed" | "completed" | "cancelled";
@@ -23,36 +23,26 @@ interface AdminAppointmentListProps {
 }
 
 const services: { [key: string]: string } = {
-  // CLÍNICA
-  "1": "Consulta General",
-  "2": "Consulta Preventiva",
-  "3": "Profilaxis",
-  "4": "Canalizar",
-  "5": "Internamiento",
-  "6": "Muestra de Sangre",
-  "7": "Examen de Laboratorio",
-  // ESTÉTICA
-  "8": "Estética Pequeño",
-  "9": "Estética Mediano",
-  "10": "Estética Grande",
-  // ESTÉTICA PLUS+
-  "11": "Estética Plus+ Pequeño",
-  "12": "Estética Plus+ Mediano",
-  "13": "Estética Plus+ Grande",
-  // HOTEL
-  "14": "Hotel Cuarto Chico",
-  "15": "Hotel Cuarto Grande",
-  "16": "Hotel Cuarto Compartido (2)",
-  // PENSIÓN
-  "17": "Pensión Jaula Chica",
-  "18": "Pensión Jaula Grande",
-  // VACUNAS
-  "19": "Vanguard Plus 5",
-  "20": "Vanguard Plus 6",
-  "21": "Vacuna Giardia",
-  "22": "Vacuna Bordetella",
-  "23": "Vacuna Rabia",
-  "24": "Desparasitante",
+  "1": "Consulta de Urología",
+  "2": "Consulta de Seguimiento",
+  "3": "Consulta de Segunda Opinión",
+  "4": "Salud Masculina",
+  "5": "Infecciones Urinarias",
+  "6": "Crecimiento Prostático",
+  "7": "Cálculos Renales",
+  "8": "Cirugía de Próstata",
+  "9": "Vasectomía",
+  "10": "Cirugía Láser de Cálculos Renales",
+  "11": "Circuncisión Láser",
+  "12": "Cirugía para Incontinencia Urinaria",
+  "13": "Agrandamiento de Miembro con Ácido Hialurónico",
+  "14": "Cirugía para Cáncer de Riñón, Próstata y Vejiga",
+  "15": "Tratamiento para Disfunción Eréctil con Ondas de Choque",
+  "16": "Ultrasonido Urológico",
+  "17": "Cistoscopia",
+  "18": "Uroflujometría",
+  "19": "Análisis de PSA",
+  "20": "Perfil Urológico Completo",
 };
 
 const statusColors: { [key: string]: string } = {
@@ -119,8 +109,8 @@ export default function AdminAppointmentList({
         <table className="w-full">
           <thead className="bg-primary text-white">
             <tr>
-              <th className="px-6 py-4 text-left text-sm font-semibold">Cliente</th>
-              <th className="px-6 py-4 text-left text-sm font-semibold">Mascota</th>
+              <th className="px-6 py-4 text-left text-sm font-semibold">Paciente</th>
+              <th className="px-6 py-4 text-left text-sm font-semibold">Motivo de Consulta</th>
               <th className="px-6 py-4 text-left text-sm font-semibold">Servicio</th>
               <th className="px-6 py-4 text-left text-sm font-semibold">Fecha y Hora</th>
               <th className="px-6 py-4 text-left text-sm font-semibold">Teléfono</th>
@@ -149,8 +139,8 @@ export default function AdminAppointmentList({
                       {appointment.clientName}
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="text-sm text-gray-600">{appointment.petName}</div>
+                  <td className="px-6 py-4">
+                    <div className="text-sm text-gray-600 max-w-xs truncate">{appointment.reason || 'N/A'}</div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="text-sm text-gray-600">

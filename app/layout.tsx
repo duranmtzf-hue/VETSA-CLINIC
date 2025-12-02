@@ -18,8 +18,8 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "VETSA Clinic – Cuidado veterinario profesional",
-  description: "Clínica veterinaria profesional con servicios de alta calidad para tus mascotas",
+  title: "Dr. Misael Rodríguez – Urólogo en Torreón, Coahuila | Hospital Andalucía",
+  description: "Cirujano Urólogo especializado en salud masculina, cirugía láser, urología oncológica y tratamientos avanzados. Consultorio en Hospital Andalucía, Torreón, Coahuila.",
   manifest: "/manifest.json",
 };
 
@@ -27,7 +27,7 @@ export const viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
-  themeColor: "#0F172A",
+  themeColor: "#D4AF37",
 };
 
 export default function RootLayout({

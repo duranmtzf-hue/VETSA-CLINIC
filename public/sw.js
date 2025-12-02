@@ -1,4 +1,4 @@
-const CACHE_NAME = 'vetsa-clinic-v1';
+const CACHE_NAME = 'dr-misael-rodriguez-v1';
 const urlsToCache = [
   '/',
   '/reservar',

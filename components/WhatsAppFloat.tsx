@@ -4,13 +4,12 @@ import { motion } from "framer-motion";
 import { MessageCircle } from "lucide-react";
 
 export default function WhatsAppFloat() {
-  // Número de WhatsApp de VETSA Torreón: (871) 791 5656
-  // Formato para WhatsApp: 52 (México) + 871 (área) + 7915656 = 528717915656
-  // Burbuja roja eliminada - solo icono de WhatsApp
-  const whatsappPhone = "528717915656";
+  // Número de WhatsApp del Dr. Misael Rodríguez: (871) 111 5149
+  // Formato para WhatsApp: 52 (México) + 871 (área) + 1115149 = 528711115149
+  const whatsappPhone = "528711115149";
   
   const message = encodeURIComponent(
-    "¡Hola! Me gustaría obtener más información sobre los servicios de VETSA Clinic."
+    "¡Hola! Me gustaría obtener más información sobre los tratamientos de urología del Dr. Misael Rodríguez."
   );
   
   // Formato directo de WhatsApp Web - usar onClick para evitar validaciones del navegador

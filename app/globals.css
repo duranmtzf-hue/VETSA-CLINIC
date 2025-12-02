@@ -1,21 +1,45 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --primary: #0F172A;
-  --accent: #FF7A59;
-  --secondary: #38BDF8;
-  --background: #F8FAFC;
+  --primary: #0056FF;
+  --primary-dark: #002D6E;
+  --accent: #0056FF;
+  --secondary: #25D366;
+  --background: #F5F7FB;
+  --background-alt: #E4E7EF;
+  --text: #1A1A1A;
+  --text-light: rgba(26, 26, 26, 0.7);
 }
 
 @layer base {
   body {
-    background-color: #F8FAFC;
-    color: #0F172A;
-    font-family: var(--font-inter), sans-serif;
+    background: #F5F7FB;
+    color: #1A1A1A;
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+}
+
+@layer components {
+  /* Glassmorphism effect */
+  .glass {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(228, 231, 239, 0.5);
   }
 }
 
@@ -23,5 +47,8 @@
   .text-balance {
     text-wrap: balance;
   }
+  
+  .scroll-smooth {
+    scroll-behavior: smooth;
+  }
 }
-

@@ -20,42 +20,36 @@ import { Calendar, CheckCircle2 } from "lucide-react";
 interface AppointmentFormData {
   clientName: string;
   clientPhone: string;
-  petName: string;
+  reason: string;
   service: string;
   dateTime: Date;
 }
 
 const services = [
-  // CLÍNICA
-  { id: "1", name: "Consulta General", price: 300, category: "Clínica" },
-  { id: "2", name: "Consulta Preventiva", price: 949, category: "Clínica" },
-  { id: "3", name: "Profilaxis", price: 1249, category: "Clínica" },
-  { id: "4", name: "Canalizar", price: 350, category: "Clínica" },
-  { id: "5", name: "Internamiento", price: 890, category: "Clínica" },
-  { id: "6", name: "Muestra de Sangre", price: 1149, category: "Clínica" },
-  { id: "7", name: "Examen de Laboratorio", price: 295, category: "Clínica" },
-  // ESTÉTICA
-  { id: "8", name: "Estética Pequeño", price: 155, category: "Estética" },
-  { id: "9", name: "Estética Mediano", price: 230, category: "Estética" },
-  { id: "10", name: "Estética Grande", price: 320, category: "Estética" },
-  // ESTÉTICA PLUS+
-  { id: "11", name: "Estética Plus+ Pequeño", price: 210, category: "Estética Plus+" },
-  { id: "12", name: "Estética Plus+ Mediano", price: 300, category: "Estética Plus+" },
-  { id: "13", name: "Estética Plus+ Grande", price: 724, category: "Estética Plus+" },
-  // HOTEL
-  { id: "14", name: "Hotel Cuarto Chico", price: 330, category: "Hotel" },
-  { id: "15", name: "Hotel Cuarto Grande", price: 400, category: "Hotel" },
-  { id: "16", name: "Hotel Cuarto Compartido (2)", price: 280, category: "Hotel" },
-  // PENSIÓN
-  { id: "17", name: "Pensión Jaula Chica", price: 180, category: "Pensión" },
-  { id: "18", name: "Pensión Jaula Grande", price: 250, category: "Pensión" },
-  // VACUNAS
-  { id: "19", name: "Vanguard Plus 5", price: 260, category: "Vacunas" },
-  { id: "20", name: "Vanguard Plus 6", price: 270, category: "Vacunas" },
-  { id: "21", name: "Vacuna Giardia", price: 285, category: "Vacunas" },
-  { id: "22", name: "Vacuna Bordetella", price: 255, category: "Vacunas" },
-  { id: "23", name: "Vacuna Rabia", price: 210, category: "Vacunas" },
-  { id: "24", name: "Desparasitante", price: 180, category: "Vacunas" },
+  // CONSULTAS
+  { id: "1", name: "Consulta de Urología", price: 800, category: "Consultas" },
+  { id: "2", name: "Consulta de Seguimiento", price: 600, category: "Consultas" },
+  { id: "3", name: "Consulta de Segunda Opinión", price: 1000, category: "Consultas" },
+  // SALUD MASCULINA Y TRATAMIENTOS
+  { id: "4", name: "Salud Masculina", price: 1200, category: "Salud Masculina" },
+  { id: "5", name: "Infecciones Urinarias", price: 2000, category: "Tratamientos" },
+  { id: "6", name: "Crecimiento Prostático", price: 15000, category: "Tratamientos" },
+  { id: "7", name: "Cálculos Renales", price: 12000, category: "Cirugía" },
+  // CIRUGÍAS
+  { id: "8", name: "Cirugía de Próstata", price: 30000, category: "Cirugía" },
+  { id: "9", name: "Vasectomía", price: 4000, category: "Cirugía" },
+  { id: "10", name: "Cirugía Láser de Cálculos Renales", price: 15000, category: "Cirugía" },
+  { id: "11", name: "Circuncisión Láser", price: 5000, category: "Cirugía" },
+  { id: "12", name: "Cirugía para Incontinencia Urinaria", price: 25000, category: "Cirugía" },
+  { id: "13", name: "Agrandamiento de Miembro con Ácido Hialurónico", price: 20000, category: "Estética" },
+  { id: "14", name: "Cirugía para Cáncer de Riñón, Próstata y Vejiga", price: 50000, category: "Oncología" },
+  { id: "15", name: "Tratamiento para Disfunción Eréctil con Ondas de Choque", price: 12000, category: "Tratamientos" },
+  // DIAGNÓSTICO
+  { id: "16", name: "Ultrasonido Urológico", price: 1200, category: "Diagnóstico" },
+  { id: "17", name: "Cistoscopia", price: 3500, category: "Diagnóstico" },
+  { id: "18", name: "Uroflujometría", price: 800, category: "Diagnóstico" },
+  { id: "19", name: "Análisis de PSA", price: 500, category: "Diagnóstico" },
+  { id: "20", name: "Perfil Urológico Completo", price: 1500, category: "Diagnóstico" },
 ];
 
 // Componente interno que usa useSearchParams - debe estar en Suspense
@@ -150,7 +144,7 @@ function ReservarForm() {
     const formattedDate = format(selectedDate!, "dd 'de' MMMM 'de' yyyy", { locale: es });
     const formattedTime = format(selectedDate!, "HH:mm");
     const phoneNumber = appointmentData.clientPhone.replace(/\D/g, "");
-    const messageText = `Confirmo mi cita en VETSA el ${formattedDate} a las ${formattedTime}`;
+    const messageText = `Confirmo mi cita con el Dr. Misael Rodríguez el ${formattedDate} a las ${formattedTime}`;
     const whatsappMessage = encodeURIComponent(messageText);
     const whatsappUrl = `https://wa.me/52${phoneNumber}?text=${whatsappMessage}`;
 
@@ -177,9 +171,9 @@ function ReservarForm() {
             <div className="bg-gray-50 rounded-xl p-6 mb-8 text-left">
               <h3 className="font-display font-semibold text-lg mb-4">Detalles de la cita:</h3>
               <div className="space-y-2 text-gray-700">
-                <p><strong>Cliente:</strong> {appointmentData.clientName}</p>
-                <p><strong>Mascota:</strong> {appointmentData.petName}</p>
-                <p><strong>Servicio:</strong> {services.find(s => s.id === appointmentData.service)?.name}</p>
+                <p><strong>Paciente:</strong> {appointmentData.clientName}</p>
+                <p><strong>Motivo de consulta:</strong> {appointmentData.reason}</p>
+                <p><strong>Tratamiento:</strong> {services.find(s => s.id === appointmentData.service)?.name}</p>
                 <p><strong>Fecha y hora:</strong> {formattedDate} a las {formattedTime}</p>
               </div>
             </div>
@@ -220,7 +214,7 @@ function ReservarForm() {
         >
           <div className="bg-white rounded-2xl shadow-xl p-8">
             <h1 className="text-4xl font-display font-bold text-primary mb-8 text-center">
-              Reservar Cita
+              Agendar Consulta
             </h1>
 
             <form 
@@ -234,7 +228,7 @@ function ReservarForm() {
             >
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Nombre del Cliente *
+                  Nombre del Paciente *
                 </label>
                 <input
                   {...register("clientName", { required: "Este campo es requerido" })}
@@ -270,31 +264,31 @@ function ReservarForm() {
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Nombre de la Mascota *
+                  Motivo de Consulta *
                 </label>
                 <input
-                  {...register("petName", { required: "Este campo es requerido" })}
+                  {...register("reason", { required: "Este campo es requerido" })}
                   type="text"
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent transition-all"
-                  placeholder="Max"
+                  placeholder="Ej: Dolor al orinar, revisión de próstata, etc."
                 />
-                {errors.petName && (
-                  <p className="text-red-500 text-sm mt-1">{errors.petName.message}</p>
+                {errors.reason && (
+                  <p className="text-red-500 text-sm mt-1">{errors.reason.message}</p>
                 )}
               </div>
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Servicio *
+                  Tratamiento *
                 </label>
                 <select
-                  {...register("service", { required: "Selecciona un servicio" })}
+                  {...register("service", { required: "Selecciona un tratamiento" })}
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent transition-all"
                 >
-                  <option value="">Selecciona un servicio</option>
+                  <option value="">Selecciona un tratamiento</option>
                   {services.map((service) => (
                     <option key={service.id} value={service.id}>
-                      {service.name} - ${service.price}
+                      {service.name} - ${service.price.toLocaleString()}
                     </option>
                   ))}
                 </select>

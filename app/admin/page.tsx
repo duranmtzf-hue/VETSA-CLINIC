@@ -21,7 +21,7 @@ interface Appointment {
   id: string;
   clientName: string;
   clientPhone: string;
-  petName: string;
+  reason: string;
   service: string;
   dateTime: any;
   status: "pending" | "confirmed" | "completed" | "cancelled";
@@ -80,7 +80,7 @@ export default function AdminPage() {
       filtered = filtered.filter(
         (appointment) =>
           appointment.clientName.toLowerCase().includes(searchLower) ||
-          appointment.petName.toLowerCase().includes(searchLower) ||
+          (appointment.reason && appointment.reason.toLowerCase().includes(searchLower)) ||
           appointment.clientPhone.includes(searchLower)
       );
     }
@@ -141,7 +141,7 @@ export default function AdminPage() {
       <!DOCTYPE html>
       <html>
         <head>
-          <title>Reporte de Citas - VETSA</title>
+          <title>Reporte de Citas - Dr. Misael Rodríguez</title>
           <style>
             body { font-family: Arial, sans-serif; padding: 20px; }
             h1 { color: #0F172A; text-align: center; }
@@ -156,7 +156,7 @@ export default function AdminPage() {
           </style>
         </head>
         <body>
-          <h1>Reporte de Citas - VETSA Torreón</h1>
+          <h1>Reporte de Citas - Dr. Misael Rodríguez</h1>
           <p><strong>Fecha de generación:</strong> ${new Date().toLocaleDateString('es-ES', { 
             year: 'numeric', 
             month: 'long', 
@@ -168,8 +168,8 @@ export default function AdminPage() {
           <table>
             <thead>
               <tr>
-                <th>Cliente</th>
-                <th>Mascota</th>
+                <th>Paciente</th>
+                <th>Motivo de Consulta</th>
                 <th>Servicio</th>
                 <th>Fecha y Hora</th>
                 <th>Teléfono</th>
@@ -192,7 +192,7 @@ export default function AdminPage() {
                 return `
                   <tr>
                     <td>${appointment.clientName}</td>
-                    <td>${appointment.petName}</td>
+                    <td>${appointment.reason || 'N/A'}</td>
                     <td>${appointment.service}</td>
                     <td>${formattedDate} - ${formattedTime}</td>
                     <td>${appointment.clientPhone}</td>
@@ -321,7 +321,7 @@ export default function AdminPage() {
                   onChange={(e) => setEmail(e.target.value)}
                   required
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent transition-all"
-                  placeholder="admin@vetsa.com"
+                  placeholder="admin@drmisaelrodriguez.com"
                 />
               </div>
 
@@ -370,7 +370,7 @@ export default function AdminPage() {
             <h1 className="text-4xl font-display font-bold text-primary mb-2">
               Panel Administrativo
             </h1>
-            <p className="text-gray-600">Gestiona las citas de la clínica</p>
+            <p className="text-gray-600">Gestiona las citas médicas del consultorio</p>
           </div>
           <div className="flex items-center gap-4">
             <motion.button
