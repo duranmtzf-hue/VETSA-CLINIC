@@ -113,7 +113,10 @@ function ReservarForm() {
       }
 
       const appointmentData = {
-        ...data,
+        clientName: data.clientName,
+        clientPhone: data.clientPhone,
+        petName: (data as any).reason || data.clientName, // Mapear reason a petName temporalmente
+        service: data.service,
         dateTime: selectedDate,
         status: "pending",
         createdAt: new Date(),

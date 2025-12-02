@@ -131,7 +131,7 @@ export default function AdminAppointmentList({
                     </div>
                   </td>
                   <td className="px-6 py-4">
-                    <div className="text-sm text-gray-600 max-w-xs truncate">{appointment.reason || 'N/A'}</div>
+                    <div className="text-sm text-gray-600 max-w-xs truncate">{appointment.petName || 'N/A'}</div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="text-sm text-gray-600">
