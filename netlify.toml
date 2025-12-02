@@ -1,6 +1,7 @@
 [build]
   command = "npm run build"
-  # No especificar publish - el plugin de Next.js lo maneja automáticamente
+  # NO configurar publish aquí - el plugin @netlify/plugin-nextjs lo maneja automáticamente
+  # Si tienes publish configurado en la UI de Netlify, bórralo desde ahí
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
