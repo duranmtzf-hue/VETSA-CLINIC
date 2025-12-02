@@ -355,7 +355,7 @@ export default function Home() {
                   </p>
                 )}
                 <p className="text-[#1A1A1A]/80 leading-relaxed" style={{ fontFamily: 'Inter, sans-serif' }}>
-                  "{testimonial.text}"
+                  {`"${testimonial.text}"`}
                 </p>
                 <div className="flex gap-1 mt-4">
                   {[...Array(5)].map((_, i) => (
