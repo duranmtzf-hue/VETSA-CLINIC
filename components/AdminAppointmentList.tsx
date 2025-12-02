@@ -111,11 +111,9 @@ export default function AdminAppointmentList({
           </thead>
           <tbody className="divide-y divide-gray-200">
             {appointments.map((appointment, index) => {
-              const dateTime =
-                appointment.dateTime?.toDate?.() ||
-                (appointment.dateTime instanceof Date
-                  ? appointment.dateTime
-                  : new Date(appointment.dateTime));
+              const dateTime = (appointment.dateTime && typeof appointment.dateTime === 'object' && 'toDate' in appointment.dateTime)
+                ? appointment.dateTime.toDate()
+                : (appointment.dateTime instanceof Date ? appointment.dateTime : new Date(appointment.dateTime));
 
               return (
                 <motion.tr
