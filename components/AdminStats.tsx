@@ -16,12 +16,22 @@ export default function AdminStats({ appointments }: AdminStatsProps) {
   const completed = appointments.filter(a => a.status === "completed").length;
   const cancelled = appointments.filter(a => a.status === "cancelled").length;
 
+  // Helper function to convert dateTime to Date
+  const getDateFromAppointment = (dateTime: any): Date => {
+    if (dateTime && typeof dateTime === 'object' && 'toDate' in dateTime) {
+      return dateTime.toDate();
+    }
+    if (dateTime instanceof Date) {
+      return dateTime;
+    }
+    return new Date(dateTime);
+  };
+
   // Citas de hoy
   const today = new Date();
   today.setHours(0, 0, 0, 0);
   const todayAppointments = appointments.filter(appointment => {
-    const dateTime = appointment.dateTime?.toDate?.() || 
-      (appointment.dateTime instanceof Date ? appointment.dateTime : new Date(appointment.dateTime));
+    const dateTime = getDateFromAppointment(appointment.dateTime);
     const appointmentDate = new Date(dateTime);
     appointmentDate.setHours(0, 0, 0, 0);
     return appointmentDate.getTime() === today.getTime();
@@ -35,8 +45,7 @@ export default function AdminStats({ appointments }: AdminStatsProps) {
   weekEnd.setHours(23, 59, 59, 999);
   
   const weekAppointments = appointments.filter(appointment => {
-    const dateTime = appointment.dateTime?.toDate?.() || 
-      (appointment.dateTime instanceof Date ? appointment.dateTime : new Date(appointment.dateTime));
+    const dateTime = getDateFromAppointment(appointment.dateTime);
     return dateTime >= weekStart && dateTime <= weekEnd;
   }).length;
 
@@ -45,8 +54,7 @@ export default function AdminStats({ appointments }: AdminStatsProps) {
   const monthEnd = new Date(today.getFullYear(), today.getMonth() + 1, 0, 23, 59, 59, 999);
   
   const monthAppointments = appointments.filter(appointment => {
-    const dateTime = appointment.dateTime?.toDate?.() || 
-      (appointment.dateTime instanceof Date ? appointment.dateTime : new Date(appointment.dateTime));
+    const dateTime = getDateFromAppointment(appointment.dateTime);
     return dateTime >= monthStart && dateTime <= monthEnd;
   }).length;
 
