@@ -16,17 +16,7 @@ import AdminAppointmentList from "@/components/AdminAppointmentList";
 import AdminStats from "@/components/AdminStats";
 import AdminFilters from "@/components/AdminFilters";
 import { LogOut, Lock, Download, FileText } from "lucide-react";
-
-interface Appointment {
-  id: string;
-  clientName: string;
-  clientPhone: string;
-  reason: string;
-  service: string;
-  dateTime: any;
-  status: "pending" | "confirmed" | "completed" | "cancelled";
-  createdAt?: any;
-}
+import { Appointment } from "@/lib/types";
 
 export default function AdminPage() {
   const router = useRouter();
@@ -80,7 +70,7 @@ export default function AdminPage() {
       filtered = filtered.filter(
         (appointment) =>
           appointment.clientName.toLowerCase().includes(searchLower) ||
-          (appointment.reason && appointment.reason.toLowerCase().includes(searchLower)) ||
+          (appointment.petName && appointment.petName.toLowerCase().includes(searchLower)) ||
           appointment.clientPhone.includes(searchLower)
       );
     }
@@ -96,8 +86,9 @@ export default function AdminPage() {
       now.setHours(0, 0, 0, 0);
       
       filtered = filtered.filter((appointment) => {
-        const dateTime = appointment.dateTime?.toDate?.() || 
-          (appointment.dateTime instanceof Date ? appointment.dateTime : new Date(appointment.dateTime));
+        const dateTime = (appointment.dateTime && typeof appointment.dateTime === 'object' && 'toDate' in appointment.dateTime)
+          ? appointment.dateTime.toDate()
+          : (appointment.dateTime instanceof Date ? appointment.dateTime : new Date(appointment.dateTime));
         const appointmentDate = new Date(dateTime);
         appointmentDate.setHours(0, 0, 0, 0);
 
@@ -178,8 +169,9 @@ export default function AdminPage() {
             </thead>
             <tbody>
               ${filteredAppointments.map(appointment => {
-                const dt = appointment.dateTime?.toDate?.() || 
-                  (appointment.dateTime instanceof Date ? appointment.dateTime : new Date(appointment.dateTime));
+                const dt = (appointment.dateTime && typeof appointment.dateTime === 'object' && 'toDate' in appointment.dateTime)
+                  ? appointment.dateTime.toDate()
+                  : (appointment.dateTime instanceof Date ? appointment.dateTime : new Date(appointment.dateTime));
                 const formattedDate = dt.toLocaleDateString('es-ES', { 
                   year: 'numeric', 
                   month: 'long', 
@@ -192,7 +184,7 @@ export default function AdminPage() {
                 return `
                   <tr>
                     <td>${appointment.clientName}</td>
-                    <td>${appointment.reason || 'N/A'}</td>
+                    <td>${appointment.petName || 'N/A'}</td>
                     <td>${appointment.service}</td>
                     <td>${formattedDate} - ${formattedTime}</td>
                     <td>${appointment.clientPhone}</td>

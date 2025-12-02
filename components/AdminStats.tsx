@@ -2,17 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Calendar, CheckCircle2, Clock, XCircle, TrendingUp, Users } from "lucide-react";
-
-interface Appointment {
-  id: string;
-  clientName: string;
-  clientPhone: string;
-  petName: string;
-  service: string;
-  dateTime: any;
-  status: "pending" | "confirmed" | "completed" | "cancelled";
-  createdAt?: any;
-}
+import { Appointment } from "@/lib/types";
 
 interface AdminStatsProps {
   appointments: Appointment[];

@@ -5,16 +5,7 @@ import { motion } from "framer-motion";
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
 import { CheckCircle2, XCircle, Clock, Calendar, Loader2 } from "lucide-react";
-
-interface Appointment {
-  id: string;
-  clientName: string;
-  clientPhone: string;
-  reason: string;
-  service: string;
-  dateTime: any;
-  status: "pending" | "confirmed" | "completed" | "cancelled";
-}
+import { Appointment } from "@/lib/types";
 
 interface AdminAppointmentListProps {
   appointments: Appointment[];
