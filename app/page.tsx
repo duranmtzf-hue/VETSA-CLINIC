@@ -20,15 +20,15 @@ export default function Home() {
     <main className="min-h-screen bg-[#F5F7FB]">
       <Header />
       
-      {/* Hero Section - Redesigned Premium */}
-      <section className="relative min-h-screen flex items-center overflow-hidden pt-20">
-        {/* Enhanced Background with gradients */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#F5F7FB] via-white to-[#F5F7FB]"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(0,86,255,0.08),transparent_50%)]"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,rgba(0,86,255,0.05),transparent_50%)]"></div>
+      {/* Hero Section - Professional Design */}
+      <section className="relative min-h-screen flex items-center overflow-hidden pt-20 bg-white">
+        {/* Professional Background with subtle gradients */}
+        <div className="absolute inset-0 bg-gradient-to-br from-white via-[#FAFBFC] to-white"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_45%,rgba(0,86,255,0.04),transparent_60%)]"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_55%,rgba(0,86,255,0.03),transparent_60%)]"></div>
         
-        <div className="container mx-auto px-6 lg:px-12 relative z-10 py-16 lg:py-24">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center max-w-7xl mx-auto">
+        <div className="container mx-auto px-6 lg:px-16 relative z-10 py-20 lg:py-32">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center max-w-7xl mx-auto">
             {/* Left Column - Content */}
             <motion.div
               initial={{ opacity: 0, y: 60 }}
@@ -42,11 +42,11 @@ export default function Home() {
                   initial={{ opacity: 0, y: 40 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.9, delay: 0.3 }}
-                  className="text-5xl md:text-6xl lg:text-7xl xl:text-7xl 2xl:text-8xl font-bold text-[#1A1A1A] leading-[1.15] tracking-tight"
-                  style={{ fontFamily: 'Poppins, sans-serif' }}
+                  className="text-5xl md:text-6xl lg:text-6xl xl:text-7xl font-bold text-[#1A1A1A] leading-[1.2] tracking-tight"
+                  style={{ fontFamily: 'Poppins, sans-serif', wordBreak: 'normal', overflowWrap: 'normal' }}
                 >
-                  <span className="block whitespace-normal">Dr. Misael</span>
-                  <span className="block bg-gradient-to-r from-[#0056FF] to-[#0048E6] bg-clip-text text-transparent whitespace-normal">
+                  <span className="block">Dr. Misael</span>
+                  <span className="block bg-gradient-to-r from-[#0056FF] to-[#0048E6] bg-clip-text text-transparent">
                     Rodríguez
                   </span>
                 </motion.h1>
@@ -55,7 +55,7 @@ export default function Home() {
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.5 }}
-                  className="text-xl md:text-2xl lg:text-2xl font-light text-[#1A1A1A]/80 leading-relaxed"
+                  className="text-xl md:text-2xl lg:text-2xl font-medium text-[#1A1A1A]/90 leading-relaxed"
                   style={{ fontFamily: 'Inter, sans-serif' }}
                 >
                   Urólogo de Alta Especialidad
@@ -67,9 +67,9 @@ export default function Home() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.6 }}
-                className="space-y-4 max-w-xl"
+                className="space-y-4 max-w-2xl"
               >
-                <p className="text-base md:text-lg lg:text-xl text-[#1A1A1A]/70 leading-relaxed" style={{ fontFamily: 'Inter, sans-serif' }}>
+                <p className="text-base md:text-lg lg:text-lg text-[#1A1A1A]/75 leading-relaxed" style={{ fontFamily: 'Inter, sans-serif' }}>
                   Atención urológica especializada con tecnología de vanguardia y un enfoque personalizado 
                   para tu bienestar integral. Experiencia, dedicación y excelencia médica en cada consulta.
                 </p>
@@ -80,31 +80,31 @@ export default function Home() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.7 }}
-                className="flex flex-col sm:flex-row gap-4 pt-2"
+                className="flex flex-col sm:flex-row gap-4 pt-4"
               >
                 <button
                   onClick={handleReservarClick}
-                  className="group inline-flex items-center justify-center gap-3 bg-gradient-to-r from-[#0056FF] to-[#0048E6] hover:from-[#0048E6] hover:to-[#0039CC] text-white font-semibold px-10 py-5 rounded-[24px] shadow-xl hover:shadow-2xl transition-all duration-300 text-base lg:text-lg cursor-pointer"
+                  className="group inline-flex items-center justify-center gap-3 bg-gradient-to-r from-[#0056FF] to-[#0048E6] hover:from-[#0048E6] hover:to-[#0039CC] text-white font-semibold px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 text-base cursor-pointer"
                   style={{ fontFamily: 'Inter, sans-serif' }}
                 >
-                  <Calendar className="w-5 h-5 lg:w-6 lg:h-6" />
+                  <Calendar className="w-5 h-5" />
                   <span>Agendar Consulta</span>
-                  <ArrowRight className="w-5 h-5 lg:w-6 lg:h-6 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </button>
                 <a
                   href="https://wa.me/528711115149"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-3 bg-[#25D366] hover:bg-[#20BA5A] text-white font-semibold px-10 py-5 rounded-[24px] shadow-xl hover:shadow-2xl transition-all duration-300 text-base lg:text-lg"
+                  className="inline-flex items-center justify-center gap-3 bg-[#25D366] hover:bg-[#20BA5A] text-white font-semibold px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 text-base"
                   style={{ fontFamily: 'Inter, sans-serif' }}
                 >
-                  <MessageCircle className="w-5 h-5 lg:w-6 lg:h-6" />
+                  <MessageCircle className="w-5 h-5" />
                   <span>WhatsApp</span>
                 </a>
               </motion.div>
             </motion.div>
 
-            {/* Right Column - Doctor Image */}
+            {/* Right Column - Doctor Image - Professional Layout */}
             <motion.div
               initial={{ opacity: 0, x: 40 }}
               animate={{ opacity: 1, x: 0 }}
@@ -112,20 +112,20 @@ export default function Home() {
               className="relative flex items-center justify-center lg:justify-end order-1 lg:order-2"
             >
               <div className="relative w-full max-w-md lg:max-w-lg xl:max-w-xl">
-                {/* Background gradients */}
-                <div className="absolute -top-12 -right-12 w-64 h-64 bg-gradient-to-br from-[#0056FF]/10 to-transparent rounded-full blur-3xl"></div>
-                <div className="absolute -bottom-12 -left-12 w-72 h-72 bg-gradient-to-tr from-[#0056FF]/8 to-transparent rounded-full blur-3xl"></div>
+                {/* Subtle background gradients */}
+                <div className="absolute -top-16 -right-16 w-80 h-80 bg-gradient-to-br from-[#0056FF]/8 to-transparent rounded-full blur-3xl"></div>
+                <div className="absolute -bottom-16 -left-16 w-96 h-96 bg-gradient-to-tr from-[#0056FF]/6 to-transparent rounded-full blur-3xl"></div>
                 
-                {/* Image container */}
+                {/* Professional image container */}
                 <div className="relative group">
-                  {/* Glow effect */}
-                  <div className="absolute -inset-4 bg-gradient-to-br from-[#0056FF]/15 to-transparent rounded-[40px] blur-2xl group-hover:blur-3xl transition-all duration-500"></div>
+                  {/* Subtle glow effect */}
+                  <div className="absolute -inset-3 bg-gradient-to-br from-[#0056FF]/10 to-transparent rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
                   
-                  {/* Image frame */}
-                  <div className="relative aspect-[3/4] lg:aspect-[4/5] rounded-[32px] overflow-hidden shadow-2xl bg-white border-4 border-white transform group-hover:scale-[1.01] transition-all duration-500">
+                  {/* Image frame with professional styling */}
+                  <div className="relative aspect-[3/4] lg:aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl bg-white border border-gray-100 transform group-hover:scale-[1.01] transition-all duration-500">
                     <Image
                       src="/images/Doctor.jpg"
-                      alt="Dr. Héctor Iván Martínez López - Urólogo Certificado en Torreón"
+                      alt="Dr. Misael Rodríguez - Urólogo Certificado en Torreón"
                       fill
                       className="object-cover object-center"
                       priority
