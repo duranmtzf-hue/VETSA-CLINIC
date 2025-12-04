@@ -45,9 +45,9 @@ export default function Home() {
                   className="text-5xl md:text-6xl lg:text-6xl xl:text-6xl 2xl:text-7xl font-bold text-[#1A1A1A] leading-[1.2] tracking-tight"
                   style={{ fontFamily: 'Poppins, sans-serif', wordBreak: 'keep-all' }}
                 >
-                  <span className="block">Urología de</span>
+                  <span className="block">Dr. Misael</span>
                   <span className="block bg-gradient-to-r from-[#0056FF] to-[#0048E6] bg-clip-text text-transparent overflow-visible">
-                    Alta Especialidad
+                    Rodríguez
                   </span>
                 </motion.h1>
                 
@@ -58,7 +58,7 @@ export default function Home() {
                   className="text-xl md:text-2xl lg:text-2xl font-light text-[#1A1A1A]/80 leading-relaxed"
                   style={{ fontFamily: 'Inter, sans-serif' }}
                 >
-                  Tecnología de vanguardia y atención personalizada
+                  Urólogo de Alta Especialidad
                 </motion.p>
               </div>
 
