@@ -27,29 +27,29 @@ interface AppointmentFormData {
 
 const services = [
   // CONSULTAS
-  { id: "1", name: "Consulta de Urología", price: 800, category: "Consultas" },
-  { id: "2", name: "Consulta de Seguimiento", price: 600, category: "Consultas" },
-  { id: "3", name: "Consulta de Segunda Opinión", price: 1000, category: "Consultas" },
+  { id: "1", name: "Consulta de Urología", category: "Consultas" },
+  { id: "2", name: "Consulta de Seguimiento", category: "Consultas" },
+  { id: "3", name: "Consulta de Segunda Opinión", category: "Consultas" },
   // SALUD MASCULINA Y TRATAMIENTOS
-  { id: "4", name: "Salud Masculina", price: 1200, category: "Salud Masculina" },
-  { id: "5", name: "Infecciones Urinarias", price: 2000, category: "Tratamientos" },
-  { id: "6", name: "Crecimiento Prostático", price: 15000, category: "Tratamientos" },
-  { id: "7", name: "Cálculos Renales", price: 12000, category: "Cirugía" },
+  { id: "4", name: "Salud Masculina Integral", category: "Salud Masculina" },
+  { id: "5", name: "Infecciones Urinarias", category: "Tratamientos" },
+  { id: "6", name: "Hiperplasia Prostática Benigna (HPB)", category: "Tratamientos" },
+  { id: "7", name: "Cálculos Renales (Litiasis Renal)", category: "Cirugía" },
   // CIRUGÍAS
-  { id: "8", name: "Cirugía de Próstata", price: 30000, category: "Cirugía" },
-  { id: "9", name: "Vasectomía", price: 4000, category: "Cirugía" },
-  { id: "10", name: "Cirugía Láser de Cálculos Renales", price: 15000, category: "Cirugía" },
-  { id: "11", name: "Circuncisión Láser", price: 5000, category: "Cirugía" },
-  { id: "12", name: "Cirugía para Incontinencia Urinaria", price: 25000, category: "Cirugía" },
-  { id: "13", name: "Agrandamiento de Miembro con Ácido Hialurónico", price: 20000, category: "Estética" },
-  { id: "14", name: "Cirugía para Cáncer de Riñón, Próstata y Vejiga", price: 50000, category: "Oncología" },
-  { id: "15", name: "Tratamiento para Disfunción Eréctil con Ondas de Choque", price: 12000, category: "Tratamientos" },
+  { id: "8", name: "Cirugía de Próstata", category: "Cirugía" },
+  { id: "9", name: "Vasectomía", category: "Cirugía" },
+  { id: "10", name: "Cirugía Láser de Cálculos Renales", category: "Cirugía" },
+  { id: "11", name: "Circuncisión Láser", category: "Cirugía" },
+  { id: "12", name: "Cirugía para Incontinencia Urinaria", category: "Cirugía" },
+  { id: "13", name: "Aumento de Pene con Ácido Hialurónico", category: "Estética" },
+  { id: "14", name: "Cirugía Oncológica Urológica", category: "Oncología" },
+  { id: "15", name: "Tratamiento de Disfunción Eréctil con Ondas de Choque", category: "Tratamientos" },
   // DIAGNÓSTICO
-  { id: "16", name: "Ultrasonido Urológico", price: 1200, category: "Diagnóstico" },
-  { id: "17", name: "Cistoscopia", price: 3500, category: "Diagnóstico" },
-  { id: "18", name: "Uroflujometría", price: 800, category: "Diagnóstico" },
-  { id: "19", name: "Análisis de PSA", price: 500, category: "Diagnóstico" },
-  { id: "20", name: "Perfil Urológico Completo", price: 1500, category: "Diagnóstico" },
+  { id: "16", name: "Ultrasonido Urológico", category: "Diagnóstico" },
+  { id: "17", name: "Cistoscopia", category: "Diagnóstico" },
+  { id: "18", name: "Uroflujometría", category: "Diagnóstico" },
+  { id: "19", name: "Análisis de PSA", category: "Diagnóstico" },
+  { id: "20", name: "Perfil Urológico Completo", category: "Diagnóstico" },
 ];
 
 // Componente interno que usa useSearchParams - debe estar en Suspense
@@ -291,7 +291,7 @@ function ReservarForm() {
                   <option value="">Selecciona un tratamiento</option>
                   {services.map((service) => (
                     <option key={service.id} value={service.id}>
-                      {service.name} - ${service.price.toLocaleString()}
+                      {service.name}
                     </option>
                   ))}
                 </select>

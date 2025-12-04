@@ -193,69 +193,146 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Treatments Section */}
-      <section className="py-24 bg-[#F5F7FB]">
-        <div className="container mx-auto px-6 lg:px-12">
+      {/* Treatments Section - Redesigned */}
+      <section className="py-32 bg-gradient-to-b from-white via-[#F5F7FB] to-white relative overflow-hidden">
+        {/* Decorative background elements */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute top-20 left-10 w-72 h-72 bg-[#0056FF] rounded-full blur-3xl"></div>
+          <div className="absolute bottom-20 right-10 w-96 h-96 bg-[#0056FF] rounded-full blur-3xl"></div>
+        </div>
+        
+        <div className="container mx-auto px-6 lg:px-12 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="text-center mb-16"
+            className="text-center mb-20"
           >
-            <h2 className="text-5xl md:text-6xl font-bold text-[#1A1A1A] mb-6" style={{ fontFamily: 'Poppins, sans-serif' }}>
-              Nuestros Tratamientos
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#0056FF]/10 rounded-full mb-6">
+              <Sparkles className="w-4 h-4 text-[#0056FF]" />
+              <span className="text-sm font-semibold text-[#0056FF] uppercase tracking-wide">Tratamientos Especializados</span>
+            </div>
+            <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold text-[#1A1A1A] mb-6 leading-tight" style={{ fontFamily: 'Poppins, sans-serif' }}>
+              Nuestros <span className="text-[#0056FF]">Tratamientos</span>
             </h2>
-            <p className="text-xl text-[#1A1A1A]/70 max-w-2xl mx-auto" style={{ fontFamily: 'Inter, sans-serif' }}>
-              Servicios urológicos especializados con tecnología de vanguardia
+            <p className="text-xl md:text-2xl text-[#1A1A1A]/70 max-w-3xl mx-auto leading-relaxed" style={{ fontFamily: 'Inter, sans-serif' }}>
+              Diagnósticos oportunos y tratamientos de mínima invasión con tecnología de vanguardia
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto mb-16">
             {[
-              { icon: Stethoscope, title: "Consulta de Urología", desc: "Evaluación completa del sistema urinario y reproductor" },
-              { icon: Heart, title: "Salud Masculina", desc: "Evaluación integral de la salud masculina y bienestar urológico" },
-              { icon: Award, title: "Infecciones Urinarias", desc: "Diagnóstico y tratamiento de infecciones del tracto urinario" },
-              { icon: Users, title: "Crecimiento Prostático", desc: "Tratamiento de hiperplasia prostática benigna (HPB)" },
-              { icon: Clock, title: "Cálculos Renales", desc: "Tratamiento de litiasis renal mediante técnicas avanzadas" },
-              { icon: Sparkles, title: "Cirugía Láser", desc: "Procedimientos quirúrgicos con tecnología láser de mínima invasión" },
+              { 
+                icon: Stethoscope, 
+                title: "Consulta de Urología", 
+                desc: "Evaluación médica completa y especializada del sistema urinario y reproductor masculino",
+                features: ["Diagnóstico preciso", "Evaluación integral", "Plan personalizado", "Tecnología avanzada"]
+              },
+              { 
+                icon: Heart, 
+                title: "Salud Masculina Integral", 
+                desc: "Evaluación completa de la salud masculina enfocada en bienestar urológico, hormonal y reproductivo",
+                features: ["Evaluación integral", "Detección temprana", "Mejora calidad de vida", "Prevención"]
+              },
+              { 
+                icon: Award, 
+                title: "Infecciones Urinarias", 
+                desc: "Diagnóstico y tratamiento especializado con antibióticos dirigidos y seguimiento personalizado",
+                features: ["Diagnóstico preciso", "Tratamiento efectivo", "Alivio rápido", "Prevención"]
+              },
+              { 
+                icon: Users, 
+                title: "Hiperplasia Prostática", 
+                desc: "Tratamiento integral del crecimiento prostático con medicamentos o procedimientos mínimamente invasivos",
+                features: ["Mejora del flujo", "Técnicas avanzadas", "Mínima invasión", "Mejor calidad de vida"]
+              },
+              { 
+                icon: Clock, 
+                title: "Cálculos Renales", 
+                desc: "Tratamiento avanzado mediante litotricia, ureteroscopia láser o nefrolitotomía percutánea",
+                features: ["Mínima invasión", "Recuperación rápida", "Alta efectividad", "Tecnología láser"]
+              },
+              { 
+                icon: Sparkles, 
+                title: "Cirugía Láser", 
+                desc: "Procedimientos quirúrgicos con tecnología láser de última generación para menor invasión y mejor recuperación",
+                features: ["Tecnología láser", "Menor sangrado", "Recuperación rápida", "Resultados duraderos"]
+              },
             ].map((treatment, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-white rounded-[20px] p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-[#E4E7EF] group"
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="group relative"
               >
-                <div className="w-14 h-14 bg-[#0056FF]/10 rounded-[16px] flex items-center justify-center mb-6 group-hover:bg-[#0056FF] transition-colors">
-                  <treatment.icon className="w-7 h-7 text-[#0056FF] group-hover:text-white transition-colors" />
+                <div className="bg-gradient-to-br from-white to-[#F5F7FB] rounded-[28px] p-8 shadow-lg hover:shadow-2xl transition-all duration-500 border border-[#E4E7EF] h-full flex flex-col relative overflow-hidden">
+                  {/* Hover gradient effect */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#0056FF]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-[28px]"></div>
+                  
+                  <div className="relative z-10">
+                    {/* Icon */}
+                    <div className="w-16 h-16 bg-gradient-to-br from-[#0056FF]/10 to-[#0056FF]/5 rounded-[20px] flex items-center justify-center mb-6 group-hover:from-[#0056FF] group-hover:to-[#0048E6] transition-all duration-500 shadow-md group-hover:shadow-xl">
+                      <treatment.icon className="w-8 h-8 text-[#0056FF] group-hover:text-white transition-all duration-500" />
+                    </div>
+                    
+                    {/* Title */}
+                    <h3 className="text-2xl font-bold text-[#1A1A1A] mb-4 group-hover:text-[#0056FF] transition-colors" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                      {treatment.title}
+                    </h3>
+                    
+                    {/* Description */}
+                    <p className="text-[#1A1A1A]/80 leading-relaxed mb-6 text-base" style={{ fontFamily: 'Inter, sans-serif' }}>
+                      {treatment.desc}
+                    </p>
+                    
+                    {/* Features */}
+                    {treatment.features && (
+                      <ul className="space-y-2 mb-6">
+                        {treatment.features.map((feature, idx) => (
+                          <li key={idx} className="flex items-center gap-2 text-sm text-[#1A1A1A]/70">
+                            <div className="w-1.5 h-1.5 bg-[#0056FF] rounded-full"></div>
+                            <span style={{ fontFamily: 'Inter, sans-serif' }}>{feature}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                    
+                    {/* CTA */}
+                    <Link 
+                      href="/servicios"
+                      className="inline-flex items-center gap-2 text-[#0056FF] hover:text-[#0048E6] font-semibold text-sm transition-colors group/link mt-auto"
+                      style={{ fontFamily: 'Inter, sans-serif' }}
+                    >
+                      <span>Conocer más</span>
+                      <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
+                    </Link>
+                  </div>
                 </div>
-                <h3 className="text-xl font-bold text-[#1A1A1A] mb-3" style={{ fontFamily: 'Poppins, sans-serif' }}>
-                  {treatment.title}
-                </h3>
-                <p className="text-[#1A1A1A]/70 leading-relaxed" style={{ fontFamily: 'Inter, sans-serif' }}>
-                  {treatment.desc}
-                </p>
               </motion.div>
             ))}
           </div>
 
           <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="text-center mt-12"
+            className="text-center"
           >
             <Link
               href="/servicios"
-              className="inline-flex items-center gap-2 text-[#0056FF] hover:text-[#0048E6] font-semibold text-lg transition-colors group"
+              className="group inline-flex items-center gap-3 bg-gradient-to-r from-[#0056FF] to-[#0048E6] hover:from-[#0048E6] hover:to-[#0039CC] text-white font-semibold px-10 py-5 rounded-[24px] shadow-xl hover:shadow-2xl transition-all duration-300 text-lg"
               style={{ fontFamily: 'Inter, sans-serif' }}
             >
               <span>Ver todos los tratamientos</span>
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Link>
+            <p className="text-sm text-[#1A1A1A]/60 mt-4" style={{ fontFamily: 'Inter, sans-serif' }}>
+              Consulta disponibilidad y costos personalizados
+            </p>
           </motion.div>
         </div>
       </section>
