@@ -503,7 +503,7 @@ export default function Home() {
                 
                 {/* Comment */}
                 <p className="text-[#1A1A1A]/80 leading-relaxed mb-4 text-sm" style={{ fontFamily: 'Inter, sans-serif' }}>
-                  &ldquo;{testimonial.text}&rdquo;
+                  "{testimonial.text}"
                 </p>
                 
                 {/* Author */}
