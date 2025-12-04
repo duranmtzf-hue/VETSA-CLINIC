@@ -42,11 +42,11 @@ export default function Home() {
                   initial={{ opacity: 0, y: 40 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.9, delay: 0.3 }}
-                  className="text-5xl md:text-6xl lg:text-7xl xl:text-7xl font-bold text-[#1A1A1A] leading-[1.1] tracking-tight break-words"
+                  className="text-5xl md:text-6xl lg:text-6xl xl:text-7xl font-bold text-[#1A1A1A] leading-[1.15] tracking-tight"
                   style={{ fontFamily: 'Poppins, sans-serif' }}
                 >
-                  <span className="block whitespace-nowrap">Urología de</span>
-                  <span className="block bg-gradient-to-r from-[#0056FF] to-[#0048E6] bg-clip-text text-transparent whitespace-nowrap">
+                  <span className="block">Urología de</span>
+                  <span className="block bg-gradient-to-r from-[#0056FF] to-[#0048E6] bg-clip-text text-transparent">
                     Alta Especialidad
                   </span>
                 </motion.h1>
@@ -104,30 +104,30 @@ export default function Home() {
               </motion.div>
             </motion.div>
 
-            {/* Right Column - Doctor Image - Improved Layout */}
+            {/* Right Column - Doctor Image */}
             <motion.div
               initial={{ opacity: 0, x: 40 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 1, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-              className="relative flex items-center justify-center lg:justify-center order-1 lg:order-2"
+              className="relative flex items-center justify-center lg:justify-end order-1 lg:order-2"
             >
-              <div className="relative w-full max-w-md lg:max-w-xl xl:max-w-2xl">
-                {/* Enhanced background gradients */}
-                <div className="absolute -top-16 -right-16 w-80 h-80 bg-gradient-to-br from-[#0056FF]/15 via-[#0056FF]/8 to-transparent rounded-full blur-3xl"></div>
-                <div className="absolute -bottom-16 -left-16 w-96 h-96 bg-gradient-to-tr from-[#0056FF]/12 via-transparent to-transparent rounded-full blur-3xl"></div>
+              <div className="relative w-full max-w-md lg:max-w-lg xl:max-w-xl">
+                {/* Background gradients */}
+                <div className="absolute -top-12 -right-12 w-64 h-64 bg-gradient-to-br from-[#0056FF]/10 to-transparent rounded-full blur-3xl"></div>
+                <div className="absolute -bottom-12 -left-12 w-72 h-72 bg-gradient-to-tr from-[#0056FF]/8 to-transparent rounded-full blur-3xl"></div>
                 
-                {/* Professional image container with better positioning */}
-                <div className="relative group flex justify-center">
-                  {/* Enhanced glow effect */}
-                  <div className="absolute -inset-6 bg-gradient-to-br from-[#0056FF]/20 via-[#0056FF]/10 to-transparent rounded-[48px] blur-3xl group-hover:blur-[40px] transition-all duration-700"></div>
+                {/* Image container */}
+                <div className="relative group">
+                  {/* Glow effect */}
+                  <div className="absolute -inset-4 bg-gradient-to-br from-[#0056FF]/15 to-transparent rounded-[40px] blur-2xl group-hover:blur-3xl transition-all duration-500"></div>
                   
-                  {/* Image frame with improved aspect ratio */}
-                  <div className="relative aspect-[3/4] lg:aspect-[5/6] rounded-[40px] overflow-hidden shadow-2xl bg-white border-4 border-white transform group-hover:scale-[1.02] transition-all duration-500 max-w-md lg:max-w-lg">
+                  {/* Image frame */}
+                  <div className="relative aspect-[3/4] lg:aspect-[4/5] rounded-[32px] overflow-hidden shadow-2xl bg-white border-4 border-white transform group-hover:scale-[1.01] transition-all duration-500">
                     <Image
                       src="/images/Doctor.jpg"
                       alt="Dr. Héctor Iván Martínez López - Urólogo Certificado en Torreón"
                       fill
-                      className="object-cover object-center object-[center_top]"
+                      className="object-cover object-center"
                       priority
                       unoptimized
                       sizes="(max-width: 768px) 100vw, 50vw"
