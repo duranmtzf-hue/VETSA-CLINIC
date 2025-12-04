@@ -15,7 +15,7 @@ import { format } from "date-fns";
 import { es } from "date-fns/locale";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { Calendar, CheckCircle2 } from "lucide-react";
+import { Calendar, CheckCircle2, MessageCircle } from "lucide-react";
 
 interface AppointmentFormData {
   clientName: string;
@@ -60,6 +60,14 @@ function ReservarForm() {
   const [isConfirmed, setIsConfirmed] = useState(false);
   const [appointmentData, setAppointmentData] = useState<AppointmentFormData | null>(null);
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+  const [firebaseError, setFirebaseError] = useState<string | null>(null);
+
+  // Verificar Firebase al montar el componente
+  useEffect(() => {
+    if (!db) {
+      setFirebaseError("Firebase no está configurado. Por favor, contacta al administrador.");
+    }
+  }, []);
 
   const {
     register,
@@ -109,7 +117,7 @@ function ReservarForm() {
     try {
       // Validar que db esté disponible
       if (!db) {
-        throw new Error("Firebase no está inicializado correctamente. Por favor, recarga la página.");
+        throw new Error("Firebase no está configurado. Por favor, contacta al administrador o verifica que las variables de entorno estén configuradas correctamente en Netlify.");
       }
 
       const appointmentData = {
@@ -219,6 +227,30 @@ function ReservarForm() {
             <h1 className="text-4xl font-display font-bold text-primary mb-8 text-center">
               Agendar Consulta
             </h1>
+
+            {firebaseError && (
+              <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
+                <div className="flex items-center gap-2 text-red-800">
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                  </svg>
+                  <p className="font-semibold">Error de configuración</p>
+                </div>
+                <p className="text-red-700 mt-2 text-sm">{firebaseError}</p>
+                <p className="text-red-600 mt-2 text-xs">
+                  Por favor, contacta al administrador o intenta más tarde. También puedes contactarnos directamente por WhatsApp.
+                </p>
+                <a
+                  href="https://wa.me/528711115149"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 mt-3 px-4 py-2 bg-[#25D366] text-white rounded-lg hover:bg-[#20BA5A] transition-colors text-sm font-semibold"
+                >
+                  <MessageCircle className="w-4 h-4" />
+                  Contactar por WhatsApp
+                </a>
+              </div>
+            )}
 
             <form 
               onSubmit={handleSubmit(onSubmit, (errors) => {

@@ -25,9 +25,18 @@ const getFirebaseConfig = () => {
         appId: "1:000000000000:web:dummy",
       };
     }
-    throw new Error(
-      "Missing Firebase configuration. Please check your environment variables."
+    // En el cliente, NO lanzar error, solo retornar dummy y mostrar advertencia
+    console.warn(
+      "⚠️ Firebase no está configurado. Por favor, configura las variables de entorno NEXT_PUBLIC_FIREBASE_* en Netlify."
     );
+    return {
+      apiKey: "dummy-key",
+      authDomain: "dummy.firebaseapp.com",
+      projectId: "dummy-project",
+      storageBucket: "dummy.appspot.com",
+      messagingSenderId: "000000000000",
+      appId: "1:000000000000:web:dummy",
+    };
   }
 
   return {
@@ -43,31 +52,50 @@ const getFirebaseConfig = () => {
 const firebaseConfig = getFirebaseConfig();
 
 // Initialize Firebase solo si hay una app ya inicializada o si estamos en el cliente
-let app: FirebaseApp;
-let auth: Auth;
-let db: Firestore;
-let storage: FirebaseStorage;
+let app: FirebaseApp | undefined;
+let auth: Auth | undefined;
+let db: Firestore | undefined;
+let storage: FirebaseStorage | undefined;
 
-if (typeof window !== "undefined") {
-  // Solo inicializar en el cliente
-  if (getApps().length === 0) {
-    app = initializeApp(firebaseConfig);
-  } else {
-    app = getApps()[0];
+// Verificar si la configuración es válida (no dummy)
+const isValidConfig = firebaseConfig.apiKey !== "dummy-key" && 
+                      firebaseConfig.projectId !== "dummy-project";
+
+if (typeof window !== "undefined" && isValidConfig) {
+  // Solo inicializar en el cliente si la configuración es válida
+  try {
+    if (getApps().length === 0) {
+      app = initializeApp(firebaseConfig);
+    } else {
+      app = getApps()[0];
+    }
+    auth = getAuth(app);
+    db = getFirestore(app);
+    storage = getStorage(app);
+  } catch (error) {
+    console.error("Error al inicializar Firebase:", error);
+    // No lanzar error, solo dejar undefined para que los componentes lo manejen
   }
-  auth = getAuth(app);
-  db = getFirestore(app);
-  storage = getStorage(app);
-} else {
-  // Durante SSR/Build, inicializar con configuración dummy (no se usará)
-  if (getApps().length === 0) {
-    app = initializeApp(firebaseConfig);
-  } else {
-    app = getApps()[0];
+} else if (typeof window !== "undefined" && !isValidConfig) {
+  // En el cliente pero sin configuración válida
+  console.warn("⚠️ Firebase no está configurado correctamente. Algunas funcionalidades no estarán disponibles.");
+  // Dejar undefined para que los componentes verifiquen antes de usar
+}
+
+// Durante SSR/Build, siempre usar configuración dummy (no se usará)
+if (typeof window === "undefined") {
+  try {
+    if (getApps().length === 0) {
+      app = initializeApp(firebaseConfig);
+    } else {
+      app = getApps()[0];
+    }
+    auth = getAuth(app);
+    db = getFirestore(app);
+    storage = getStorage(app);
+  } catch (error) {
+    // Ignorar errores durante SSR
   }
-  auth = getAuth(app);
-  db = getFirestore(app);
-  storage = getStorage(app);
 }
 
 export { auth, db, storage };

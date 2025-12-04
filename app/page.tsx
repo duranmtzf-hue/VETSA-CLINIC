@@ -12,28 +12,31 @@ export default function Home() {
     <main className="min-h-screen bg-[#F5F7FB]">
       <Header />
       
-      {/* Hero Section - Premium Design */}
-      <section className="relative min-h-screen flex items-center overflow-hidden pt-24">
-        <div className="absolute inset-0 bg-gradient-to-br from-white via-[#F5F7FB] to-white"></div>
+      {/* Hero Section - Redesigned Premium */}
+      <section className="relative min-h-screen flex items-center overflow-hidden pt-20">
+        {/* Enhanced Background with gradients */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#F5F7FB] via-white to-[#F5F7FB]"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(0,86,255,0.08),transparent_50%)]"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,rgba(0,86,255,0.05),transparent_50%)]"></div>
         
-        <div className="container mx-auto px-6 lg:px-12 relative z-10 py-20">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center max-w-7xl mx-auto">
+        <div className="container mx-auto px-6 lg:px-12 relative z-10 py-16 lg:py-24">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center max-w-7xl mx-auto">
             {/* Left Column - Content */}
             <motion.div
               initial={{ opacity: 0, y: 60 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-              className="space-y-10"
+              className="space-y-8 lg:space-y-10 order-2 lg:order-1"
             >
               {/* Badge */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.7, delay: 0.2 }}
-                className="inline-flex items-center gap-2 px-5 py-2.5 bg-white rounded-full border border-[#E4E7EF] shadow-sm"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-white/80 backdrop-blur-sm rounded-full border border-[#E4E7EF] shadow-lg"
               >
-                <div className="w-2 h-2 bg-[#0056FF] rounded-full"></div>
-                <span className="text-sm font-semibold text-[#1A1A1A]">Urólogo Certificado</span>
+                <div className="w-2.5 h-2.5 bg-[#0056FF] rounded-full animate-pulse"></div>
+                <span className="text-sm font-bold text-[#1A1A1A]" style={{ fontFamily: 'Inter, sans-serif' }}>Urólogo Certificado CONAMEU</span>
               </motion.div>
 
               {/* Main Title */}
@@ -42,21 +45,23 @@ export default function Home() {
                   initial={{ opacity: 0, y: 40 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.9, delay: 0.3 }}
-                  className="text-6xl md:text-7xl lg:text-8xl font-bold text-[#1A1A1A] leading-[1.1] tracking-tight"
+                  className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-[#1A1A1A] leading-[1.05] tracking-tight"
                   style={{ fontFamily: 'Poppins, sans-serif' }}
                 >
                   <span className="block">Urología de</span>
-                  <span className="block text-[#0056FF]">Alta Especialidad</span>
+                  <span className="block bg-gradient-to-r from-[#0056FF] to-[#0048E6] bg-clip-text text-transparent">
+                    Alta Especialidad
+                  </span>
                 </motion.h1>
                 
                 <motion.p
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.5 }}
-                  className="text-2xl md:text-3xl font-light text-[#1A1A1A]/80 leading-relaxed"
+                  className="text-xl md:text-2xl lg:text-3xl font-light text-[#1A1A1A]/80 leading-relaxed"
                   style={{ fontFamily: 'Inter, sans-serif' }}
                 >
-                  Tecnología que cuida de ti
+                  Tecnología de vanguardia y atención personalizada
                 </motion.p>
               </div>
 
@@ -67,10 +72,32 @@ export default function Home() {
                 transition={{ duration: 0.8, delay: 0.6 }}
                 className="space-y-4 max-w-xl"
               >
-                <p className="text-lg md:text-xl text-[#1A1A1A]/70 leading-relaxed" style={{ fontFamily: 'Inter, sans-serif' }}>
+                <p className="text-base md:text-lg lg:text-xl text-[#1A1A1A]/70 leading-relaxed" style={{ fontFamily: 'Inter, sans-serif' }}>
                   Atención urológica especializada con tecnología de vanguardia y un enfoque personalizado 
                   para tu bienestar integral. Experiencia, dedicación y excelencia médica en cada consulta.
                 </p>
+                
+                {/* Stats */}
+                <div className="flex flex-wrap gap-6 pt-4">
+                  <div className="flex items-center gap-2">
+                    <div className="w-10 h-10 bg-[#0056FF]/10 rounded-lg flex items-center justify-center">
+                      <Users className="w-5 h-5 text-[#0056FF]" />
+                    </div>
+                    <div>
+                      <div className="text-2xl font-bold text-[#1A1A1A]" style={{ fontFamily: 'Poppins, sans-serif' }}>3000+</div>
+                      <div className="text-xs text-[#1A1A1A]/60" style={{ fontFamily: 'Inter, sans-serif' }}>Pacientes</div>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-10 h-10 bg-[#0056FF]/10 rounded-lg flex items-center justify-center">
+                      <Award className="w-5 h-5 text-[#0056FF]" />
+                    </div>
+                    <div>
+                      <div className="text-2xl font-bold text-[#1A1A1A]" style={{ fontFamily: 'Poppins, sans-serif' }}>15+</div>
+                      <div className="text-xs text-[#1A1A1A]/60" style={{ fontFamily: 'Inter, sans-serif' }}>Años Exp.</div>
+                    </div>
+                  </div>
+                </div>
               </motion.div>
 
               {/* CTA Buttons */}
@@ -78,48 +105,129 @@ export default function Home() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.7 }}
-                className="flex flex-col sm:flex-row gap-4 pt-4"
+                className="flex flex-col sm:flex-row gap-4 pt-2"
               >
                 <Link
                   href="/reservar"
-                  className="group inline-flex items-center justify-center gap-3 bg-[#0056FF] hover:bg-[#0048E6] text-white font-semibold px-10 py-5 rounded-[20px] shadow-lg hover:shadow-xl transition-all duration-300 text-base"
+                  className="group inline-flex items-center justify-center gap-3 bg-gradient-to-r from-[#0056FF] to-[#0048E6] hover:from-[#0048E6] hover:to-[#0039CC] text-white font-semibold px-10 py-5 rounded-[24px] shadow-xl hover:shadow-2xl transition-all duration-300 text-base lg:text-lg"
                   style={{ fontFamily: 'Inter, sans-serif' }}
                 >
-                  <Calendar className="w-5 h-5" />
+                  <Calendar className="w-5 h-5 lg:w-6 lg:h-6" />
                   <span>Agendar Consulta</span>
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="w-5 h-5 lg:w-6 lg:h-6 group-hover:translate-x-1 transition-transform" />
                 </Link>
                 <a
                   href="https://wa.me/528711115149"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-3 bg-[#25D366] hover:bg-[#20BA5A] text-white font-semibold px-10 py-5 rounded-[20px] shadow-lg hover:shadow-xl transition-all duration-300 text-base"
+                  className="inline-flex items-center justify-center gap-3 bg-[#25D366] hover:bg-[#20BA5A] text-white font-semibold px-10 py-5 rounded-[24px] shadow-xl hover:shadow-2xl transition-all duration-300 text-base lg:text-lg"
                   style={{ fontFamily: 'Inter, sans-serif' }}
                 >
-                  <MessageCircle className="w-5 h-5" />
+                  <MessageCircle className="w-5 h-5 lg:w-6 lg:h-6" />
                   <span>WhatsApp</span>
                 </a>
               </motion.div>
             </motion.div>
 
-            {/* Right Column - Doctor Image */}
+            {/* Right Column - Doctor Image - Premium Professional Design */}
             <motion.div
-              initial={{ opacity: 0, x: 60 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-              className="relative flex items-center justify-center lg:justify-end"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1.2, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+              className="relative flex items-center justify-center lg:justify-end order-1 lg:order-2"
             >
-              <div className="relative w-full max-w-lg">
-                <div className="relative aspect-[3/4] rounded-[30px] overflow-hidden shadow-2xl bg-white">
-                  <Image
-                    src="/images/Doctor.jpg"
-                    alt="Dr. Misael Rodríguez - Urólogo en Torreón"
-                    fill
-                    className="object-cover object-center"
-                    priority
-                    unoptimized
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                  />
+              <div className="relative w-full max-w-lg lg:max-w-2xl xl:max-w-3xl">
+                {/* Premium decorative background elements */}
+                <div className="absolute -top-16 -right-16 w-80 h-80 bg-gradient-to-br from-[#0056FF]/25 via-[#0056FF]/10 to-transparent rounded-full blur-3xl animate-pulse"></div>
+                <div className="absolute -bottom-16 -left-16 w-96 h-96 bg-gradient-to-tr from-[#0056FF]/20 via-transparent to-transparent rounded-full blur-3xl"></div>
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#0056FF]/5 rounded-full blur-3xl"></div>
+                
+                {/* Main image container with premium styling */}
+                <div className="relative group">
+                  {/* Multi-layer glow effects for depth */}
+                  <div className="absolute -inset-6 bg-gradient-to-br from-[#0056FF]/40 via-[#0056FF]/20 to-transparent rounded-[60px] blur-3xl group-hover:blur-[40px] transition-all duration-700"></div>
+                  <div className="absolute -inset-3 bg-gradient-to-tr from-white/60 via-transparent to-transparent rounded-[55px]"></div>
+                  
+                  {/* Premium image frame */}
+                  <div className="relative aspect-[3/4] lg:aspect-[4/5] rounded-[50px] overflow-hidden shadow-2xl bg-gradient-to-br from-white via-[#F5F7FB] to-white border-8 border-white transform group-hover:scale-[1.02] transition-all duration-700">
+                    {/* Subtle gradient overlay for professional depth */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent z-10"></div>
+                    <div className="absolute inset-0 bg-gradient-to-br from-[#0056FF]/5 via-transparent to-transparent z-10"></div>
+                    
+                    <Image
+                      src="/images/Doctor.jpg"
+                      alt="Dr. Héctor Iván Martínez López - Urólogo Certificado CONAMEU en Torreón"
+                      fill
+                      className="object-cover object-center group-hover:scale-110 transition-transform duration-700"
+                      priority
+                      unoptimized
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                    />
+                    
+                    {/* Premium professional badge overlay at bottom */}
+                    <div className="absolute bottom-8 left-8 right-8 z-20">
+                      <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 0.9 }}
+                        className="bg-white/98 backdrop-blur-xl rounded-3xl p-6 shadow-2xl border-2 border-white/80"
+                      >
+                        <div className="flex items-center gap-4">
+                          <div className="w-16 h-16 bg-gradient-to-br from-[#0056FF] to-[#0048E6] rounded-2xl flex items-center justify-center shadow-xl">
+                            <Award className="w-8 h-8 text-white" />
+                          </div>
+                          <div className="flex-1">
+                            <div className="text-lg font-bold text-[#1A1A1A] mb-1" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                              Dr. Héctor Iván Martínez
+                            </div>
+                            <div className="text-sm text-[#1A1A1A]/70 font-medium" style={{ fontFamily: 'Inter, sans-serif' }}>
+                              Urólogo Certificado CONAMEU
+                            </div>
+                            <div className="flex items-center gap-2 mt-2">
+                              <div className="flex gap-1">
+                                {[...Array(5)].map((_, i) => (
+                                  <svg key={i} className="w-4 h-4 text-[#F59E0B]" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                  </svg>
+                                ))}
+                              </div>
+                              <span className="text-xs text-[#1A1A1A]/60" style={{ fontFamily: 'Inter, sans-serif' }}>15+ años de experiencia</span>
+                            </div>
+                          </div>
+                        </div>
+                      </motion.div>
+                    </div>
+                  </div>
+                  
+                  {/* Floating certification badge - top right */}
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.8, rotate: -10 }}
+                    animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                    transition={{ duration: 0.8, delay: 1.1 }}
+                    className="absolute -top-8 -right-8 bg-gradient-to-br from-[#0056FF] to-[#0048E6] text-white px-8 py-4 rounded-3xl shadow-2xl border-4 border-white z-30 transform hover:scale-105 transition-transform"
+                  >
+                    <div className="flex items-center gap-3">
+                      <Award className="w-6 h-6" />
+                      <div>
+                        <div className="text-xs font-semibold opacity-90">Certificado</div>
+                        <div className="text-sm font-bold">CONAMEU</div>
+                      </div>
+                    </div>
+                  </motion.div>
+                  
+                  {/* Floating stats badge - top left */}
+                  <motion.div
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.8, delay: 1.2 }}
+                    className="absolute top-12 -left-6 bg-white/95 backdrop-blur-md rounded-2xl shadow-xl p-5 border-2 border-white z-30"
+                  >
+                    <div className="text-center">
+                      <div className="text-3xl font-bold text-[#0056FF] mb-1" style={{ fontFamily: 'Poppins, sans-serif' }}>3000+</div>
+                      <div className="text-xs font-semibold text-[#1A1A1A]" style={{ fontFamily: 'Inter, sans-serif' }}>Pacientes</div>
+                      <div className="text-xs text-[#1A1A1A]/60 mt-1" style={{ fontFamily: 'Inter, sans-serif' }}>Atendidos</div>
+                    </div>
+                  </motion.div>
                 </div>
               </div>
             </motion.div>
