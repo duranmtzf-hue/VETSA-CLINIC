@@ -36,17 +36,6 @@ export default function Home() {
               transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
               className="space-y-8 lg:space-y-10 order-2 lg:order-1"
             >
-              {/* Badge */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.7, delay: 0.2 }}
-                className="inline-flex items-center gap-2 px-6 py-3 bg-white/80 backdrop-blur-sm rounded-full border border-[#E4E7EF] shadow-lg"
-              >
-                <div className="w-2.5 h-2.5 bg-[#0056FF] rounded-full animate-pulse"></div>
-                <span className="text-sm font-bold text-[#1A1A1A]" style={{ fontFamily: 'Inter, sans-serif' }}>Urólogo Certificado CONAMEU</span>
-              </motion.div>
-
               {/* Main Title */}
               <div className="space-y-6">
                 <motion.h1
