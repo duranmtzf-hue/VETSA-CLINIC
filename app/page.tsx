@@ -37,19 +37,18 @@ export default function Home() {
               className="space-y-8 lg:space-y-10 order-2 lg:order-1"
             >
               {/* Main Title */}
-              <div className="space-y-6 w-full overflow-visible">
+              <div className="space-y-6">
                 <motion.h1
                   initial={{ opacity: 0, y: 40 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.9, delay: 0.3 }}
-                  className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-[#1A1A1A] leading-[1.25] tracking-tight w-full overflow-visible"
-                  style={{ fontFamily: 'Poppins, sans-serif', whiteSpace: 'normal', wordBreak: 'keep-all' }}
+                  className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-[#1A1A1A] leading-[1.3] tracking-tight"
+                  style={{ fontFamily: 'Poppins, sans-serif' }}
                 >
-                  <span className="inline-block w-full overflow-visible">Dr. Misael</span>
-                  <br />
-                  <span className="inline-block bg-gradient-to-r from-[#0056FF] to-[#0048E6] bg-clip-text text-transparent w-full overflow-visible">
+                  <div className="block">Dr. Misael</div>
+                  <div className="block bg-gradient-to-r from-[#0056FF] to-[#0048E6] bg-clip-text text-transparent">
                     Rodríguez
-                  </span>
+                  </div>
                 </motion.h1>
                 
                 <motion.p
