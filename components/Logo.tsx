@@ -66,7 +66,7 @@ export default function Logo({ size = "md", showTagline = true, className = "" }
           className={`${currentSize.text} font-bold text-[#1A1A1A] leading-tight`}
           style={{ fontFamily: 'Poppins, sans-serif' }}
         >
-          Urología
+          Médico urologo
         </span>
         {showTagline && (
           <span 
