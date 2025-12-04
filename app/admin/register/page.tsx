@@ -192,7 +192,7 @@ export default function RegisterAdminPage() {
             <div className="text-center">
               <p className="text-sm text-gray-600">
                 ¿Ya tienes una cuenta?{" "}
-                <a href="/admin" className="text-accent hover:text-accent/80 font-medium">
+                <a href="/admin" className="text-[#0056FF] hover:text-[#0048E6] font-medium">
                   Inicia sesión aquí
                 </a>
               </p>

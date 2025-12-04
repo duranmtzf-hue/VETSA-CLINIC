@@ -6,13 +6,16 @@
 
 :root {
   --primary: #0056FF;
-  --primary-dark: #002D6E;
+  --primary-dark: #0048E6;
+  --primary-darker: #0039CC;
   --accent: #0056FF;
   --secondary: #25D366;
-  --background: #F5F7FB;
-  --background-alt: #E4E7EF;
+  --background: #FFFFFF;
+  --background-alt: #F5F7FB;
   --text: #1A1A1A;
   --text-light: rgba(26, 26, 26, 0.7);
+  --text-muted: rgba(26, 26, 26, 0.6);
+  --border: #E4E7EF;
 }
 
 @layer base {

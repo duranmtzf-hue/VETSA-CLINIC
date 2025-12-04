@@ -58,7 +58,7 @@ export default function PetRecordForm({ onSubmit, onCancel }: PetRecordFormProps
         <textarea
           {...register("notes")}
           rows={4}
-          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent transition-all"
+          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0056FF] focus:border-transparent transition-all"
           placeholder="Ingresa notas sobre el estado de salud, tratamiento, observaciones..."
         />
       </div>
@@ -69,7 +69,7 @@ export default function PetRecordForm({ onSubmit, onCancel }: PetRecordFormProps
             type="checkbox"
             checked={addVaccine}
             onChange={(e) => setAddVaccine(e.target.checked)}
-            className="w-4 h-4 text-accent rounded focus:ring-accent"
+            className="w-4 h-4 text-[#0056FF] rounded focus:ring-[#0056FF]"
           />
           <span className="text-sm font-medium text-gray-700">Agregar Vacuna</span>
         </label>
@@ -122,7 +122,7 @@ export default function PetRecordForm({ onSubmit, onCancel }: PetRecordFormProps
         </button>
         <button
           type="submit"
-          className="flex-1 bg-accent hover:bg-accent/90 text-white font-semibold px-4 py-3 rounded-lg shadow-md transition-all duration-300"
+          className="flex-1 bg-gradient-to-r from-[#0056FF] to-[#0048E6] hover:from-[#0048E6] hover:to-[#0039CC] text-white font-semibold px-4 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
         >
           Guardar
         </button>

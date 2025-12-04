@@ -42,11 +42,11 @@ export default function Home() {
                   initial={{ opacity: 0, y: 40 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.9, delay: 0.3 }}
-                  className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-[#1A1A1A] leading-[1.3] tracking-tight"
-                  style={{ fontFamily: 'Poppins, sans-serif' }}
+                  className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-[#1A1A1A] leading-[1.4] tracking-tight"
+                  style={{ fontFamily: 'Poppins, sans-serif', lineHeight: '1.4' }}
                 >
                   <div className="block">Dr. Misael</div>
-                  <div className="block bg-gradient-to-r from-[#0056FF] to-[#0048E6] bg-clip-text text-transparent">
+                  <div className="block bg-gradient-to-r from-[#0056FF] to-[#0048E6] bg-clip-text text-transparent" style={{ lineHeight: '1.4', paddingBottom: '0.1em' }}>
                     Rodríguez
                   </div>
                 </motion.h1>

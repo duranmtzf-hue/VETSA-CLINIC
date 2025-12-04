@@ -205,7 +205,7 @@ function ReservarForm() {
             <div className="mt-8">
               <button
                 onClick={() => router.push("/")}
-                className="text-accent hover:text-accent/80 font-medium"
+                className="text-[#0056FF] hover:text-[#0048E6] font-medium"
               >
                 Volver al inicio
               </button>
@@ -372,7 +372,8 @@ function ReservarForm() {
                 disabled={isSubmitting}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="w-full bg-accent hover:bg-accent/90 text-white font-semibold px-6 py-4 rounded-lg shadow-md transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                className="w-full bg-gradient-to-r from-[#0056FF] to-[#0048E6] hover:from-[#0048E6] hover:to-[#0039CC] text-white font-semibold px-6 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                style={{ fontFamily: 'Inter, sans-serif' }}
               >
                 {isSubmitting ? (
                   "Procesando..."

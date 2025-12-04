@@ -316,7 +316,7 @@ export default function AdminPage() {
               </p>
               <a
                 href="/admin/register"
-                className="inline-block text-accent hover:text-accent/80 font-medium text-sm underline"
+                className="inline-block text-[#0056FF] hover:text-[#0048E6] font-medium text-sm underline"
               >
                 Crear cuenta de administrador
               </a>
@@ -389,7 +389,7 @@ export default function AdminPage() {
               onClick={exportToPDF}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="flex items-center gap-2 bg-accent hover:bg-accent/90 text-white font-semibold px-6 py-3 rounded-lg shadow-md transition-all duration-300"
+              className="flex items-center gap-2 bg-gradient-to-r from-[#0056FF] to-[#0048E6] hover:from-[#0048E6] hover:to-[#0039CC] text-white font-semibold px-6 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
             >
               <Download className="w-5 h-5" />
               Exportar PDF

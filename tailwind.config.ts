@@ -9,12 +9,15 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        primary: "#0F172A",
-        accent: "#D4AF37",
+        primary: "#0056FF",
+        "primary-dark": "#0048E6",
+        "primary-darker": "#0039CC",
+        accent: "#0056FF",
         secondary: "#25D366",
-        background: "#F8FAFC",
-        gold: "#D4AF37",
-        "gold-dark": "#B8941E",
+        background: "#FFFFFF",
+        "background-alt": "#F5F7FB",
+        text: "#1A1A1A",
+        "text-light": "rgba(26, 26, 26, 0.7)",
       },
       fontFamily: {
         sans: ["var(--font-inter)", "sans-serif"],

@@ -29,14 +29,14 @@ export default function MedicalImageCard({
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay }}
       whileHover={{ scale: 1.05, y: -10 }}
-      className="relative rounded-3xl overflow-hidden shadow-gold hover:shadow-gold-xl aspect-[4/3] group cursor-pointer bg-gradient-to-br from-secondary/20 to-accent/20 transition-all duration-300 ring-2 ring-transparent hover:ring-accent/30"
+      className="relative rounded-3xl overflow-hidden shadow-lg hover:shadow-xl aspect-[4/3] group cursor-pointer bg-gradient-to-br from-[#25D366]/20 to-[#0056FF]/20 transition-all duration-300 ring-2 ring-transparent hover:ring-[#0056FF]/30"
     >
       {!imageError ? (
         <>
           {imageLoading && (
             <div className="absolute inset-0 z-0 flex items-center justify-center bg-gradient-to-br from-secondary/20 to-accent/20">
               <div className="text-center p-6">
-                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-accent mx-auto mb-4"></div>
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#0056FF] mx-auto mb-4"></div>
                 <p className="text-gray-600 text-sm">Cargando...</p>
               </div>
             </div>
@@ -58,7 +58,7 @@ export default function MedicalImageCard({
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 pointer-events-none">
             <div className="absolute bottom-6 left-6 right-6 text-white">
               <p className="font-bold text-xl drop-shadow-lg">{title}</p>
-              <div className="w-16 h-1 bg-accent rounded-full mt-2"></div>
+              <div className="w-16 h-1 bg-[#0056FF] rounded-full mt-2"></div>
             </div>
           </div>
           {/* Shine effect on hover */}
@@ -67,7 +67,7 @@ export default function MedicalImageCard({
       ) : (
         <div className="w-full h-full flex items-center justify-center">
           <div className="text-center p-6">
-            <svg className="w-20 h-20 mx-auto mb-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-20 h-20 mx-auto mb-4 text-[#0056FF]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               {icon}
             </svg>
             <p className="text-gray-700 font-bold mb-1">{title}</p>
