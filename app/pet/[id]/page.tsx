@@ -47,6 +47,11 @@ export default function PetPage() {
   }, [petId]);
 
   const fetchPet = async () => {
+    if (!db) {
+      console.error("Firebase no está configurado. No se puede obtener la mascota.");
+      setIsLoading(false);
+      return;
+    }
     try {
       const petDoc = await getDoc(doc(db, "pets", petId));
       if (petDoc.exists()) {
@@ -60,7 +65,10 @@ export default function PetPage() {
   };
 
   const handleAddRecord = async (data: { notes: string; vaccine?: { name: string; date: Date } }) => {
-    if (!pet) return;
+    if (!pet || !db) {
+      console.error("Firebase no está configurado o la mascota no existe.");
+      return;
+    }
 
     try {
       const updates: any = {};
@@ -85,7 +93,10 @@ export default function PetPage() {
   };
 
   const handleImageUpload = async () => {
-    if (!selectedImage || !pet) return;
+    if (!selectedImage || !pet || !storage || !db) {
+      console.error("Firebase no está configurado o faltan datos necesarios.");
+      return;
+    }
 
     try {
       const imageRef = ref(storage, `pets/${petId}/${selectedImage.name}`);

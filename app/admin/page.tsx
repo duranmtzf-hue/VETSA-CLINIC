@@ -31,6 +31,12 @@ export default function AdminPage() {
   const [filters, setFilters] = useState({ search: "", status: "all", dateFilter: "all" });
 
   useEffect(() => {
+    if (!auth) {
+      setIsLoading(false);
+      setError("Firebase no está configurado correctamente.");
+      return;
+    }
+
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       setIsLoading(false);
@@ -43,6 +49,10 @@ export default function AdminPage() {
   }, []);
 
   const fetchAppointments = async () => {
+    if (!db) {
+      console.error("Firebase no está configurado. No se pueden obtener las citas.");
+      return;
+    }
     try {
       const q = query(collection(db, "appointments"), orderBy("dateTime", "asc"));
       const querySnapshot = await getDocs(q);
@@ -210,6 +220,12 @@ export default function AdminPage() {
     setIsSigningIn(true);
     setError("");
 
+    if (!auth) {
+      setError("Firebase no está configurado correctamente. Por favor, contacta al administrador.");
+      setIsSigningIn(false);
+      return;
+    }
+
     try {
       await signInWithEmailAndPassword(auth, email, password);
     } catch (error: any) {
@@ -221,6 +237,10 @@ export default function AdminPage() {
   };
 
   const handleSignOut = async () => {
+    if (!auth) {
+      router.push("/");
+      return;
+    }
     try {
       await signOut(auth);
       router.push("/");

@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Mail, Phone, MapPin, ArrowRight, Calendar, MessageCircle, Stethoscope, Heart, Award, Users, Clock, Sparkles } from "lucide-react";
@@ -8,6 +9,13 @@ import Link from "next/link";
 import Image from "next/image";
 
 export default function Home() {
+  const router = useRouter();
+
+  const handleReservarClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    router.push("/reservar");
+  };
+
   return (
     <main className="min-h-screen bg-[#F5F7FB]">
       <Header />
@@ -107,15 +115,15 @@ export default function Home() {
                 transition={{ duration: 0.8, delay: 0.7 }}
                 className="flex flex-col sm:flex-row gap-4 pt-2"
               >
-                <Link
-                  href="/reservar"
-                  className="group inline-flex items-center justify-center gap-3 bg-gradient-to-r from-[#0056FF] to-[#0048E6] hover:from-[#0048E6] hover:to-[#0039CC] text-white font-semibold px-10 py-5 rounded-[24px] shadow-xl hover:shadow-2xl transition-all duration-300 text-base lg:text-lg"
+                <button
+                  onClick={handleReservarClick}
+                  className="group inline-flex items-center justify-center gap-3 bg-gradient-to-r from-[#0056FF] to-[#0048E6] hover:from-[#0048E6] hover:to-[#0039CC] text-white font-semibold px-10 py-5 rounded-[24px] shadow-xl hover:shadow-2xl transition-all duration-300 text-base lg:text-lg cursor-pointer"
                   style={{ fontFamily: 'Inter, sans-serif' }}
                 >
                   <Calendar className="w-5 h-5 lg:w-6 lg:h-6" />
                   <span>Agendar Consulta</span>
                   <ArrowRight className="w-5 h-5 lg:w-6 lg:h-6 group-hover:translate-x-1 transition-transform" />
-                </Link>
+                </button>
                 <a
                   href="https://wa.me/528711115149"
                   target="_blank"
@@ -574,15 +582,15 @@ export default function Home() {
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4">
-                <Link
-                  href="/reservar"
-                  className="group inline-flex items-center justify-center gap-3 bg-white text-[#0056FF] hover:bg-white/95 font-semibold px-10 py-5 rounded-[20px] shadow-xl hover:shadow-2xl transition-all duration-300 text-base"
+                <button
+                  onClick={handleReservarClick}
+                  className="group inline-flex items-center justify-center gap-3 bg-white text-[#0056FF] hover:bg-white/95 font-semibold px-10 py-5 rounded-[20px] shadow-xl hover:shadow-2xl transition-all duration-300 text-base cursor-pointer"
                   style={{ fontFamily: 'Inter, sans-serif' }}
                 >
                   <Calendar className="w-5 h-5" />
                   <span>Agendar Consulta</span>
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </Link>
+                </button>
                 <a
                   href="https://wa.me/528711115149"
                   target="_blank"

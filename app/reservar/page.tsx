@@ -64,9 +64,13 @@ function ReservarForm() {
 
   // Verificar Firebase al montar el componente
   useEffect(() => {
-    if (!db) {
-      setFirebaseError("Firebase no está configurado. Por favor, contacta al administrador.");
-    }
+    // Verificar después de un pequeño delay para asegurar que Firebase se haya inicializado
+    const timer = setTimeout(() => {
+      if (!db) {
+        setFirebaseError("Firebase no está configurado. Por favor, contacta al administrador.");
+      }
+    }, 100);
+    return () => clearTimeout(timer);
   }, []);
 
   const {

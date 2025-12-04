@@ -41,6 +41,12 @@ export default function RegisterAdminPage() {
       return;
     }
 
+    if (!auth) {
+      setError("Firebase no está configurado correctamente. Por favor, contacta al administrador.");
+      setIsLoading(false);
+      return;
+    }
+
     try {
       // Crear usuario con Firebase Auth
       await createUserWithEmailAndPassword(auth, email, password);
