@@ -37,16 +37,16 @@ export default function Home() {
               className="space-y-8 lg:space-y-10 order-2 lg:order-1"
             >
               {/* Main Title */}
-              <div className="space-y-6">
+              <div className="space-y-6 w-full">
                 <motion.h1
                   initial={{ opacity: 0, y: 40 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.9, delay: 0.3 }}
-                  className="text-5xl md:text-6xl lg:text-6xl xl:text-7xl font-bold text-[#1A1A1A] leading-[1.2] tracking-tight"
-                  style={{ fontFamily: 'Poppins, sans-serif', wordBreak: 'normal', overflowWrap: 'normal' }}
+                  className="text-4xl md:text-5xl lg:text-6xl xl:text-6xl font-bold text-[#1A1A1A] leading-[1.2] tracking-tight w-full"
+                  style={{ fontFamily: 'Poppins, sans-serif' }}
                 >
-                  <span className="block">Dr. Misael</span>
-                  <span className="block bg-gradient-to-r from-[#0056FF] to-[#0048E6] bg-clip-text text-transparent">
+                  <span className="block w-full overflow-visible whitespace-nowrap">Dr. Misael</span>
+                  <span className="block bg-gradient-to-r from-[#0056FF] to-[#0048E6] bg-clip-text text-transparent w-full overflow-visible whitespace-nowrap">
                     Rodríguez
                   </span>
                 </motion.h1>
