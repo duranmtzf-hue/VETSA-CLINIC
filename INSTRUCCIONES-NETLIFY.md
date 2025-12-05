@@ -49,4 +49,3 @@ Si después de hacer esto sigue fallando, verifica:
 ---
 
 **IMPORTANTE:** El archivo `netlify.toml` ya está correcto. El problema está en la configuración de la UI de Netlify que debes quitar manualmente.
-
